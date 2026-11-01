@@ -10,6 +10,14 @@
       "version": 1,
       "nsfw": false,
       "path": "sources/mangalek/source.json"
+    },
+    {
+      "id": "mangatek",
+      "name": "مانجاتك (Mangatek)",
+      "lang": "ar",
+      "version": 1,
+      "nsfw": false,
+      "path": "sources/mangatek/source.json"
     }
   ]
 }

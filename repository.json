@@ -15,7 +15,7 @@
       "id": "mangatek",
       "name": "مانجاتك (Mangatek)",
       "lang": "ar",
-      "version": 1,
+      "version": 2,
       "nsfw": false,
       "path": "sources/mangatek/source.json"
     }

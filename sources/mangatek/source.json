@@ -4,7 +4,7 @@
   "id": "mangatek",
   "name": "مانجاتك (Mangatek)",
   "lang": "ar",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://mangatek.com",
   "nsfw": false,
   "iconUrl": "https://mangatek.com/Logo/mangatek_logo.png",
@@ -145,7 +145,7 @@
   },
   "pages": {
     "verified": false,
-    "note": "The supplied reader HTML contains real URLs for the first loaded images but leaves some later image placeholders empty. Verify the live reader response before marking full chapter page extraction as verified.",
+    "note": "Mangatek hydrates later page URLs with its client-side reader. The Android app must include MangatekPageResolver.kt; static HTML parsing alone only sees the first URLs. Full live-site behavior still needs on-device verification.",
     "list": ".manga-page img",
     "image": {
       "attr": [

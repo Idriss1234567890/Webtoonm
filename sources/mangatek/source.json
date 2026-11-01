@@ -4,158 +4,94 @@
   "id": "mangatek",
   "name": "مانجاتك (Mangatek)",
   "lang": "ar",
-  "version": 2,
+  "version": 1,
   "baseUrl": "https://mangatek.com",
   "nsfw": false,
-  "iconUrl": "https://mangatek.com/Logo/mangatek_logo.png",
+  "iconUrl": "https://mangatek.com/Logo/logo-192x192.png",
+
   "headers": {
-    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
     "Referer": "https://mangatek.com/",
     "Accept-Language": "ar,en;q=0.8"
   },
+
   "latest": {
     "verified": true,
-    "firstPageUrl": "/manga-list",
-    "url": "/manga-list?page={page}",
+    "firstPageUrl": "/manga-list?sort=latest",
+    "url": "/manga-list?sort=latest&page={page}",
     "list": "a.manga-card",
     "item": {
-      "url": {
-        "selector": "a.manga-card",
-        "attr": "href"
-      },
-      "title": {
-        "selector": "h3",
-        "attr": "text"
-      },
-      "cover": {
-        "selector": "img",
-        "attr": [
-          "src",
-          "data-src",
-          "data-url"
-        ]
-      }
+      "url":   { "selector": "a.manga-card", "attr": "href" },
+      "title": { "selector": "h3", "attr": ["title", "text"] },
+      "cover": { "selector": "img", "attr": ["src", "data-src"] }
     },
-    "nextPage": "nav a[aria-disabled='false'][href*='page=']"
+    "nextPage": "a[href*=\"page=\"]:has(span.sr-only:containsOwn(التالية))"
   },
+
+  "popular": {
+    "verified": true,
+    "note": "رابط الترتيب sort=views موجود في صفحة القائمة؛ ترقيم الصفحات بـ &page=N بنفس نمط الصفحة الأولى.",
+    "firstPageUrl": "/manga-list?sort=views",
+    "url": "/manga-list?sort=views&page={page}",
+    "list": "a.manga-card",
+    "item": {
+      "url":   { "selector": "a.manga-card", "attr": "href" },
+      "title": { "selector": "h3", "attr": ["title", "text"] },
+      "cover": { "selector": "img", "attr": ["src", "data-src"] }
+    },
+    "nextPage": "a[href*=\"page=\"]:has(span.sr-only:containsOwn(التالية))"
+  },
+
   "search": {
     "verified": false,
-    "note": "Search is configured with the search query parameter, but the supplied HTML does not prove that this endpoint works. Verify against the live site before relying on search.",
+    "note": "الموقع يستخدم حقل name=search في نموذج searchForm؛ لم يُرسَل ملف نتائج بحث للتأكد من الرابط وشكل النتائج.",
     "firstPageUrl": "/manga-list?search={query}",
     "url": "/manga-list?search={query}&page={page}",
     "list": "a.manga-card",
     "item": {
-      "url": {
-        "selector": "a.manga-card",
-        "attr": "href"
-      },
-      "title": {
-        "selector": "h3",
-        "attr": "text"
-      },
-      "cover": {
-        "selector": "img",
-        "attr": [
-          "src",
-          "data-src",
-          "data-url"
-        ]
-      }
+      "url":   { "selector": "a.manga-card", "attr": "href" },
+      "title": { "selector": "h3", "attr": ["title", "text"] },
+      "cover": { "selector": "img", "attr": ["src", "data-src"] }
     },
-    "nextPage": "nav a[aria-disabled='false'][href*='page=']"
+    "nextPage": "a[href*=\"page=\"]:has(span.sr-only:containsOwn(التالية))"
   },
+
   "details": {
     "verified": true,
-    "title": {
-      "selector": "h1",
-      "attr": "text"
-    },
-    "cover": {
-      "selector": "#mangaCover",
-      "attr": [
-        "src",
-        "data-src",
-        "data-url"
-      ],
-      "fallback": {
-        "selector": "meta[property='og:image']",
-        "attr": "content"
-      }
-    },
-    "description": {
-      "selector": ".lg\\:col-span-2 p.text-gray-300",
-      "attr": "text"
-    },
-    "genres": {
-      "selector": "div.flex.gap-2.mr-2 span",
-      "attr": "text",
-      "multiple": true
-    },
-    "author": {
-      "selector": ".text-sm.text-gray-400.space-y-2 p:nth-of-type(1) span.text-white",
-      "attr": "text",
-      "multiple": true,
-      "optional": true
-    },
-    "status": {
-      "selector": "div.flex.flex-wrap.items-center.gap-4.mb-6.text-sm.font-medium.text-gray-300 > span:nth-of-type(2)",
-      "attr": "text"
-    },
+    "title":       { "selector": "h1", "attr": "text" },
+    "cover":       { "selector": "#mangaCover", "attr": ["src", "data-src"] },
+    "description": { "selector": "h3:containsOwn(القصة) + p", "attr": "text" },
+    "genres":      { "selector": "p:has(> span:containsOwn(التصنيفات)) > span.text-white", "attr": "text", "split": "،", "multiple": true },
+    "author":      { "selector": "p:has(> span:containsOwn(المؤلف)) > span.text-white", "attr": "text", "multiple": true, "optional": true },
+    "status":      { "selector": "h1 + div > span.rounded", "attr": "text" },
     "statusMap": {
       "مستمر": "ongoing",
-      "مستمرة": "ongoing",
-      "جاري": "ongoing",
-      "ongoing": "ongoing",
       "مكتمل": "completed",
-      "مكتملة": "completed",
-      "completed": "completed",
       "متوقف": "on_hold",
-      "متوقفة": "on_hold",
-      "on hold": "on_hold",
-      "ملغي": "cancelled",
-      "ملغاة": "cancelled",
-      "cancelled": "cancelled"
+      "ملغي": "cancelled"
     }
   },
+
   "chapters": {
     "verified": true,
-    "note": "Chapter links are rendered in the manga detail HTML; no private API or login is required for the listed links.",
-    "request": {
-      "method": "GET",
-      "url": "{mangaUrl}"
-    },
+    "note": "قائمة الفصول موجودة كاملة في HTML صفحة التفاصيل (بدون AJAX).",
+    "inline": true,
     "list": ".manga-chapter",
     "item": {
-      "url": {
-        "selector": "a[href^='/reader/']",
-        "attr": "href"
-      },
-      "name": {
-        "selector": "h3",
-        "attr": "text"
-      },
-      "date": {
-        "selector": "p span",
-        "attr": "text",
-        "optional": true
-      }
+      "url":  { "selector": "a", "attr": "href" },
+      "name": { "selector": "h3", "attr": "text" },
+      "date": { "selector": "p span", "attr": "text", "optional": true }
     },
     "numberFromUrl": "/([0-9]+(?:[.-][0-9]+)?)/?$",
-    "order": "desc"
+    "order": "desc",
+    "numericDate": "dmy"
   },
+
   "pages": {
     "verified": false,
-    "note": "Mangatek hydrates later page URLs with its client-side reader. The Android app must include MangatekPageResolver.kt; static HTML parsing alone only sees the first URLs. Full live-site behavior still needs on-device verification.",
-    "list": ".manga-page img",
-    "image": {
-      "attr": [
-        "data-url",
-        "src",
-        "data-src"
-      ]
-    },
-    "imageHeaders": {
-      "Referer": "https://mangatek.com/"
-    }
+    "note": "تحذير: صفحة القارئ تحتوي رابط أول صفحتين فقط في HTML؛ باقي الصفحات (pending) تُحمَّل بواسطة سكربت ChapterImageViewer عبر unlockToken. يلزم معرفة طلب الـ API الذي يعيدها.",
+    "list": "#reader-content .manga-page img[src^=\"http\"]",
+    "image": { "attr": ["src", "data-url"] },
+    "imageHeaders": { "Referer": "https://mangatek.com/" }
   }
 }

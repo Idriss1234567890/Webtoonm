@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "name": "Manga-get",
+  "description": "Depot de sources pour MangaLix Reader (une source par dossier dans sources/)",
+  "sources": [
+    {
+      "id": "mangalek",
+      "name": "مانجا ليك (Mangalek)",
+      "lang": "ar",
+      "version": 1,
+      "nsfw": false,
+      "path": "sources/mangalek/source.json"
+    }
+  ]
+}

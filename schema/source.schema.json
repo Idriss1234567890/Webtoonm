@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MangaLix source",
+  "type": "object",
+  "required": ["schemaVersion", "id", "name", "lang", "version", "baseUrl", "latest", "details", "chapters", "pages"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "id": { "type": "string", "pattern": "^[a-z0-9_-]+$" },
+    "name": { "type": "string" },
+    "lang": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "baseUrl": { "type": "string", "pattern": "^https?://" },
+    "nsfw": { "type": "boolean" },
+    "iconUrl": { "type": "string" },
+    "headers": { "type": "object", "additionalProperties": { "type": "string" } },
+    "latest": { "$ref": "#/$defs/listing" },
+    "search": { "$ref": "#/$defs/listing" },
+    "coverTransform": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["regex", "replace"],
+        "properties": { "regex": { "type": "string" }, "replace": { "type": "string" } }
+      }
+    },
+    "details": { "type": "object", "required": ["title", "cover", "description", "genres", "status", "statusMap"] },
+    "chapters": { "type": "object", "required": ["request", "list", "item", "numberFromUrl"] },
+    "pages": { "type": "object", "required": ["list", "image"] }
+  },
+  "$defs": {
+    "selector": {
+      "type": "object",
+      "required": ["selector"],
+      "properties": {
+        "selector": { "type": "string" },
+        "attr": { "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" } }] },
+        "multiple": { "type": "boolean" },
+        "optional": { "type": "boolean" }
+      }
+    },
+    "listing": {
+      "type": "object",
+      "required": ["url", "list", "item", "nextPage"],
+      "properties": {
+        "verified": { "type": "boolean" },
+        "firstPageUrl": { "type": "string" },
+        "url": { "type": "string" },
+        "list": { "type": "string" },
+        "item": {
+          "type": "object",
+          "required": ["url", "title", "cover"],
+          "properties": {
+            "url": { "$ref": "#/$defs/selector" },
+            "title": { "$ref": "#/$defs/selector" },
+            "cover": { "$ref": "#/$defs/selector" }
+          }
+        },
+        "nextPage": { "type": "string" }
+      }
+    }
+  }
+}

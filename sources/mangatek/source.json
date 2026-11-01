@@ -1,0 +1,161 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "mangatek",
+  "name": "مانجاتك (Mangatek)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://mangatek.com",
+  "nsfw": false,
+  "iconUrl": "https://mangatek.com/Logo/mangatek_logo.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://mangatek.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "firstPageUrl": "/manga-list",
+    "url": "/manga-list?page={page}",
+    "list": "a.manga-card",
+    "item": {
+      "url": {
+        "selector": "a.manga-card",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src",
+          "data-url"
+        ]
+      }
+    },
+    "nextPage": "nav a[aria-disabled='false'][href*='page=']"
+  },
+  "search": {
+    "verified": false,
+    "note": "Search is configured with the search query parameter, but the supplied HTML does not prove that this endpoint works. Verify against the live site before relying on search.",
+    "firstPageUrl": "/manga-list?search={query}",
+    "url": "/manga-list?search={query}&page={page}",
+    "list": "a.manga-card",
+    "item": {
+      "url": {
+        "selector": "a.manga-card",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src",
+          "data-url"
+        ]
+      }
+    },
+    "nextPage": "nav a[aria-disabled='false'][href*='page=']"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": "#mangaCover",
+      "attr": [
+        "src",
+        "data-src",
+        "data-url"
+      ],
+      "fallback": {
+        "selector": "meta[property='og:image']",
+        "attr": "content"
+      }
+    },
+    "description": {
+      "selector": ".lg\\:col-span-2 p.text-gray-300",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": "div.flex.gap-2.mr-2 span",
+      "attr": "text",
+      "multiple": true
+    },
+    "author": {
+      "selector": ".text-sm.text-gray-400.space-y-2 p:nth-of-type(1) span.text-white",
+      "attr": "text",
+      "multiple": true,
+      "optional": true
+    },
+    "status": {
+      "selector": "div.flex.flex-wrap.items-center.gap-4.mb-6.text-sm.font-medium.text-gray-300 > span:nth-of-type(2)",
+      "attr": "text"
+    },
+    "statusMap": {
+      "مستمر": "ongoing",
+      "مستمرة": "ongoing",
+      "جاري": "ongoing",
+      "ongoing": "ongoing",
+      "مكتمل": "completed",
+      "مكتملة": "completed",
+      "completed": "completed",
+      "متوقف": "on_hold",
+      "متوقفة": "on_hold",
+      "on hold": "on_hold",
+      "ملغي": "cancelled",
+      "ملغاة": "cancelled",
+      "cancelled": "cancelled"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "Chapter links are rendered in the manga detail HTML; no private API or login is required for the listed links.",
+    "request": {
+      "method": "GET",
+      "url": "{mangaUrl}"
+    },
+    "list": ".manga-chapter",
+    "item": {
+      "url": {
+        "selector": "a[href^='/reader/']",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "date": {
+        "selector": "p span",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "numberFromUrl": "/([0-9]+(?:[.-][0-9]+)?)/?$",
+    "order": "desc"
+  },
+  "pages": {
+    "verified": false,
+    "note": "The supplied reader HTML contains real URLs for the first loaded images but leaves some later image placeholders empty. Verify the live reader response before marking full chapter page extraction as verified.",
+    "list": ".manga-page img",
+    "image": {
+      "attr": [
+        "data-url",
+        "src",
+        "data-src"
+      ]
+    },
+    "imageHeaders": {
+      "Referer": "https://mangatek.com/"
+    }
+  }
+}

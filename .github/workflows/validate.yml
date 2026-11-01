@@ -1,0 +1,32 @@
+name: Validate sources
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: pip install beautifulsoup4 jsonschema
+      - name: Validate source.json against schema
+        run: |
+          python - <<'EOF'
+          import json, glob
+          from jsonschema import validate
+          schema = json.load(open("schema/source.schema.json", encoding="utf-8"))
+          repo = json.load(open("repository.json", encoding="utf-8"))
+          for entry in repo["sources"]:
+              src = json.load(open(entry["path"], encoding="utf-8"))
+              validate(src, schema)
+              assert src["id"] == entry["id"], entry["id"]
+              assert src["version"] == entry["version"], entry["id"]
+              print("OK", entry["id"])
+          EOF
+      - name: Run offline selector tests
+        run: python3 -I tools/test_source.py

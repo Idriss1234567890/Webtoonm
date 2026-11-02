@@ -89,8 +89,13 @@
 
   "pages": {
     "verified": false,
-    "note": "تحذير: صفحة القارئ تحتوي رابط أول صفحتين فقط في HTML؛ باقي الصفحات (pending) تُحمَّل بواسطة سكربت ChapterImageViewer عبر unlockToken. يلزم معرفة طلب الـ API الذي يعيدها.",
-    "list": "#reader-content .manga-page img[src^=\"http\"]",
+    "note": "الصفحات 3+ تُحمَّل بسكربت؛ يفحصها التطبيق بـ WebView (webview:true). الأصل: صفحة القارئ تحتوي رابط أول صفحتين فقط في HTML؛ باقي الصفحات (pending) تُحمَّل بواسطة سكربت ChapterImageViewer عبر unlockToken. يلزم معرفة طلب الـ API الذي يعيدها.",
+    "islandProp": "imageUrls",
+    "webview": true,
+    "webviewSelector": "#reader-content .manga-page img",
+    "webviewAttrs": ["src", "data-url", "data-src"],
+    "webviewTotal": "#total-pages",
+    "list": "#reader-content .manga-page img[src^=\"http\"], #reader-content .manga-page img[data-url^=\"http\"]",
     "image": { "attr": ["src", "data-url"] },
     "imageHeaders": { "Referer": "https://mangatek.com/" }
   }

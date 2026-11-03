@@ -2,7 +2,17 @@
   "schemaVersion": 1,
   "name": "MangaLix Sources",
   "sources": [
-    { "id": "mangalek", "path": "sources/mangalek/source.json" },
-    { "id": "mangatek", "path": "sources/mangatek/source.json" }
+    {
+      "id": "mangalek",
+      "path": "sources/mangalek/source.json"
+    },
+    {
+      "id": "mangatek",
+      "path": "sources/mangatek/source.json"
+    },
+    {
+      "id": "azorafly",
+      "path": "sources/azorafly/source.json"
+    }
   ]
 }

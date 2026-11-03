@@ -129,7 +129,7 @@
   },
   "chapters": {
     "verified": true,
-    "note": "الفصول الأولى من سكربت الصفحة؛ إن كان الإجمالي المعلن (_count.chapters) أكبر مما في السكربت يفتح التطبيق الصفحة في WebView ويضغط «عرض المزيد» حتى تكتمل القائمة.",
+    "note": "الفصول كلها في سكربت الصفحة (initialChapters). بعضها title:null فيسمح التعبير النمطي به. إن نقص العدد عن _count.chapters يفتح التطبيق WebView ويضغط «عرض الكل/عرض المزيد».",
     "inline": true,
     "list": "a[href*=\"/chapter-\"]",
     "item": {
@@ -142,7 +142,7 @@
         "attr": "text"
       }
     },
-    "scriptRegex": "slug:\"(chapter-[0-9.]+)\",number:([0-9.]+),title:\"([^\"]*)\",chapterStatus:\"([A-Z_]+)\".*?createdAt:\"([^\"]+)\".*?isLocked:(!0|!1)",
+    "scriptRegex": "slug:\"(chapter-[0-9.]+)\",number:([0-9.]+),title:(?:\"([^\"]*)\"|null),chapterStatus:\"([A-Z_]+)\".*?createdAt:\"([^\"]+)\".*?isLocked:(!0|!1)",
     "scriptUrl": "{manga}/{1}",
     "scriptName": "الفصل {2}",
     "scriptNumberGroup": "2",
@@ -157,7 +157,7 @@
     "webviewAttrs": [
       "href"
     ],
-    "webviewLoadMore": "عرض المزيد|Load more|Show more",
+    "webviewLoadMore": "عرض الكل|عرض المزيد|Load more|Show more|Show all",
     "webviewLocked": "svg path[d^=\"M12 1.5a5.25\"]",
     "webviewNumberRegex": "chapter-([0-9]+(?:\\.[0-9]+)?)/?$",
     "webviewNameTemplate": "الفصل {1}"

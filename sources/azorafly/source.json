@@ -1,0 +1,169 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "azorafly",
+  "name": "أزورا مانجا (Azora)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://azorafly.com",
+  "nsfw": false,
+  "iconUrl": "https://storage.azorafly.com/public/upload/2025/12/24/c925c7f3-2310-4e90-9b62-7fae04fe1c36.webp",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://azorafly.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "الصفحة الرئيسية فقط (40 عملاً بدون ترقيم صفحات). صفحة /latest-updates لم تُرسل بعد لمعرفة الترقيم.",
+    "firstPageUrl": "/",
+    "url": "/",
+    "list": "a.relative.block[href^=\"/series/\"][title]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "a",
+        "attr": [
+          "title"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      }
+    }
+  },
+  "popular": {
+    "verified": true,
+    "note": "قسم «الأكثر شعبية» في الرئيسية (9 أعمال).",
+    "firstPageUrl": "/",
+    "url": "/",
+    "list": "section a.group.flex[href^=\"/series/\"]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "img",
+        "attr": [
+          "alt"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      }
+    }
+  },
+  "search": {
+    "verified": false,
+    "note": "لم تُرسل صفحة بحث؛ الرابط والمحددات تخمين. أرسل صفحة نتائج بحث لإكمالها.",
+    "firstPageUrl": "/series?search={query}",
+    "url": "/series?search={query}&page={page}",
+    "list": "a.relative.block[href^=\"/series/\"][title]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "a",
+        "attr": [
+          "title"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      }
+    },
+    "nextPage": "a[rel=next]"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1[itemprop=name]",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": "img[itemprop=image]",
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "description": {
+      "selector": "[itemprop=description] p",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": "a[href^=\"/series?genres\"]",
+      "attr": "text",
+      "multiple": true
+    },
+    "status": {
+      "selector": "dt:containsOwn(الحالة) + dd span.font-normal",
+      "attr": "text"
+    },
+    "statusMap": {
+      "ongoing": "ongoing",
+      "completed": "completed",
+      "hiatus": "on_hold",
+      "dropped": "cancelled",
+      "cancelled": "cancelled",
+      "canceled": "cancelled"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "قائمة الفصول كاملة داخل سكربت مضمّن في صفحة العمل (initialChapters)، وتُستثنى الفصول المقفلة بالعملات (isLocked).",
+    "inline": true,
+    "list": "a[href*=\"/chapter-\"]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "span.font-medium",
+        "attr": "text"
+      }
+    },
+    "scriptRegex": "slug:\"(chapter-[0-9.]+)\",number:([0-9.]+),title:\"([^\"]*)\",chapterStatus:\"([A-Z_]+)\".*?createdAt:\"([^\"]+)\".*?isLocked:(!0|!1)",
+    "scriptUrl": "{manga}/{1}",
+    "scriptName": "الفصل {2}",
+    "scriptNumberGroup": "2",
+    "scriptDateGroup": "5",
+    "scriptSkipGroup": "6",
+    "scriptSkipValue": "!0",
+    "numberFromUrl": "chapter-([0-9]+(?:[.-][0-9]+)?)/?$",
+    "order": "desc"
+  },
+  "pages": {
+    "verified": true,
+    "note": "الصور كلها موجودة في HTML (.image-container img) بدون حاجة لـ WebView.",
+    "list": ".image-container img",
+    "image": {
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "imageHeaders": {
+      "Referer": "https://azorafly.com/"
+    }
+  }
+}

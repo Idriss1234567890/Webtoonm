@@ -13,6 +13,10 @@
     {
       "id": "azorafly",
       "path": "sources/azorafly/source.json"
+    },
+    {
+      "id": "riwayatlive",
+      "path": "sources/riwayatlive/source.json"
     }
   ]
 }

@@ -1,0 +1,172 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "riwayatlive",
+  "name": "روايات لايف",
+  "lang": "ar",
+  "type": "novel",
+  "version": 1,
+  "baseUrl": "https://riwayatlive.com",
+  "nsfw": false,
+  "iconUrl": "https://riwayatlive.com/favicon.ico",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://riwayatlive.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "firstPageUrl": "/library/?order=latest",
+    "url": "/library/page/{page}/?order=latest",
+    "list": "article.ne-card",
+    "item": {
+      "url": {
+        "selector": "a.ne-card-cover",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "a.ne-card-title",
+        "attr": [
+          "title",
+          "text"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "completed": {
+    "verified": false,
+    "note": "فلتر الحالة status=end من نموذج المكتبة (القيم: on-going, end, on-hold, canceled, upcoming). ترقيم الصفحات مع الفلتر لم يُجرَّب.",
+    "firstPageUrl": "/library/?status=end",
+    "url": "/library/page/{page}/?status=end",
+    "list": "article.ne-card",
+    "item": {
+      "url": {
+        "selector": "a.ne-card-cover",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "a.ne-card-title",
+        "attr": [
+          "title",
+          "text"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "search": {
+    "verified": true,
+    "note": "نموذج البحث GET /library/?q=",
+    "firstPageUrl": "/library/?q={query}",
+    "url": "/library/page/{page}/?q={query}",
+    "list": "article.ne-card",
+    "item": {
+      "url": {
+        "selector": "a.ne-card-cover",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "a.ne-card-title",
+        "attr": [
+          "title",
+          "text"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1.ne-novel-title",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".ne-novel-cover img",
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "description": {
+      "selector": ".rw-book-story .ne-prose",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".rw-book-genres .ne-tax a",
+      "attr": "text",
+      "multiple": true
+    },
+    "author": {
+      "selector": ".rw-book-author strong",
+      "attr": "text",
+      "multiple": true,
+      "optional": true
+    },
+    "status": {
+      "selector": ".rw-book-intro .rw-book-status",
+      "attr": "text"
+    },
+    "statusMap": {
+      "مستمرة": "ongoing",
+      "مكتملة": "completed",
+      "متوقفة مؤقتًا": "on_hold",
+      "متوقفة": "on_hold",
+      "ملغاة": "cancelled"
+    }
+  },
+  "chapters": {
+    "verified": false,
+    "note": "فهرس الفصول الكامل في {الرواية}/chapter/ ولم تُرسل صفحته لذا المحددات تخمين على نفس شكل قائمة «أحدث الفصول». إن فشل الطلب يقرأ التطبيق آخر الفصول من صفحة التفاصيل (inlineFallback).",
+    "request": {
+      "method": "GET",
+      "url": "{mangaUrl}chapter/"
+    },
+    "inlineFallback": true,
+    "list": ".rw-chapter-grid li a",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "strong",
+        "attr": "text"
+      },
+      "date": {
+        "selector": "time",
+        "attr": "datetime",
+        "optional": true
+      }
+    },
+    "numberFromUrl": "chapter-([0-9]+(?:[.-][0-9]+)?)/?$",
+    "order": "desc"
+  },
+  "content": {
+    "verified": true,
+    "note": "نص الفصل في .ne-reader-chapter-text كفقرات <p>؛ الفقرات الفارغة تُحذف.",
+    "paragraphs": ".ne-reader-chapter-text p"
+  }
+}

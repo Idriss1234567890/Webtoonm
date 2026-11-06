@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "notifications": [
+    {
+      "id": "welcome",
+      "title": "أهلاً بك في NexToon",
+      "body": "أي إشعار تضيفه هنا يصل للمستخدمين حتى والتطبيق مغلق.",
+      "url": ""
+    }
+  ]
+}

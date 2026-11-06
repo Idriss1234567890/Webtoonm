@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "fonts": [
+    {
+      "id": "tajawal",
+      "name": "تجوّل (Tajawal)",
+      "regularUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-Regular.ttf",
+      "boldUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/tajawal/Tajawal-Bold.ttf"
+    },
+    {
+      "id": "almarai",
+      "name": "المراعي (Almarai)",
+      "regularUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/almarai/Almarai-Regular.ttf",
+      "boldUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/almarai/Almarai-Bold.ttf"
+    },
+    {
+      "id": "plexarabic",
+      "name": "IBM Plex عربي",
+      "regularUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansarabic/IBMPlexSansArabic-Regular.ttf",
+      "boldUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/ibmplexsansarabic/IBMPlexSansArabic-Bold.ttf"
+    },
+    {
+      "id": "amiri",
+      "name": "أميري (Amiri)",
+      "regularUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/amiri/Amiri-Regular.ttf",
+      "boldUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/amiri/Amiri-Bold.ttf"
+    },
+    {
+      "id": "scheherazade",
+      "name": "شهرزاد (Scheherazade)",
+      "regularUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/scheherazadenew/ScheherazadeNew-Regular.ttf",
+      "boldUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/scheherazadenew/ScheherazadeNew-Bold.ttf"
+    },
+    {
+      "id": "lateef",
+      "name": "لطيف (Lateef)",
+      "regularUrl": "https://raw.githubusercontent.com/google/fonts/main/ofl/lateef/Lateef-Regular.ttf"
+    }
+  ]
+}

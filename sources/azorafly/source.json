@@ -4,7 +4,7 @@
   "id": "azorafly",
   "name": "أزورا مانجا (Azora)",
   "lang": "ar",
-  "version": 1,
+  "version": 5,
   "baseUrl": "https://azorafly.com",
   "nsfw": false,
   "iconUrl": "https://storage.azorafly.com/public/upload/2025/12/24/c925c7f3-2310-4e90-9b62-7fae04fe1c36.webp",
@@ -175,5 +175,89 @@
     "imageHeaders": {
       "Referer": "https://azorafly.com/"
     }
+  },
+  "home": {
+    "url": "/",
+    "sections": [
+      {
+        "container": "section:has(.shared-slider-style-1__card)",
+        "title": {
+          "selector": "h2",
+          "attr": "text"
+        },
+        "list": "a:has(.shared-slider-style-1__card)",
+        "item": {
+          "url": {
+            "selector": "a",
+            "attr": "href"
+          },
+          "title": {
+            "selector": "h3",
+            "attr": "text"
+          },
+          "cover": {
+            "selector": "img.shared-slider-style-1__cover-image",
+            "attr": [
+              "src",
+              "data-src"
+            ]
+          }
+        }
+      },
+      {
+        "container": "div.col-span-12:has(a.relative.block[title])",
+        "title": {
+          "selector": "h2",
+          "attr": "text"
+        },
+        "list": "a.relative.block[href^=\"/series/\"][title]",
+        "item": {
+          "url": {
+            "selector": "a",
+            "attr": "href"
+          },
+          "title": {
+            "selector": "a",
+            "attr": [
+              "title"
+            ]
+          },
+          "cover": {
+            "selector": "img",
+            "attr": [
+              "src",
+              "data-src"
+            ]
+          }
+        }
+      },
+      {
+        "container": "section:has(a.group.flex[href^=\"/series/\"])",
+        "title": {
+          "selector": "h2",
+          "attr": "text"
+        },
+        "list": "a.group.flex[href^=\"/series/\"]",
+        "item": {
+          "url": {
+            "selector": "a",
+            "attr": "href"
+          },
+          "title": {
+            "selector": "img",
+            "attr": [
+              "alt"
+            ]
+          },
+          "cover": {
+            "selector": "img",
+            "attr": [
+              "src",
+              "data-src"
+            ]
+          }
+        }
+      }
+    ]
   }
 }

@@ -5,7 +5,7 @@
   "name": "روايات لايف",
   "lang": "ar",
   "type": "novel",
-  "version": 1,
+  "version": 3,
   "baseUrl": "https://riwayatlive.com",
   "nsfw": false,
   "iconUrl": "https://riwayatlive.com/favicon.ico",
@@ -37,6 +37,16 @@
           "src",
           "data-src"
         ]
+      },
+      "status": {
+        "selector": ".ne-status-badge",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".ne-card-meta",
+        "attr": "text",
+        "optional": true
       }
     },
     "nextPage": "a.next.page-numbers"
@@ -65,6 +75,16 @@
           "src",
           "data-src"
         ]
+      },
+      "status": {
+        "selector": ".ne-status-badge",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".ne-card-meta",
+        "attr": "text",
+        "optional": true
       }
     },
     "nextPage": "a.next.page-numbers"
@@ -93,6 +113,16 @@
           "src",
           "data-src"
         ]
+      },
+      "status": {
+        "selector": ".ne-status-badge",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".ne-card-meta",
+        "attr": "text",
+        "optional": true
       }
     },
     "nextPage": "a.next.page-numbers"
@@ -139,7 +169,7 @@
   },
   "chapters": {
     "verified": false,
-    "note": "فهرس الفصول الكامل في {الرواية}/chapter/ ولم تُرسل صفحته لذا المحددات تخمين على نفس شكل قائمة «أحدث الفصول». إن فشل الطلب يقرأ التطبيق آخر الفصول من صفحة التفاصيل (inlineFallback).",
+    "note": "الفهرس الكامل في {الرواية}/chapter/ (تخمين محددات). مهما كانت نتيجته يُكمَّل العدد: كل رقم من 1 إلى أعلى فصل ظاهر يُضاف تلقائياً (synthesize) فتظهر كل الفصول؛ الأرقام غير المنشورة تعطي خطأ عند فتحها فقط.",
     "request": {
       "method": "GET",
       "url": "{mangaUrl}chapter/"
@@ -162,11 +192,59 @@
       }
     },
     "numberFromUrl": "chapter-([0-9]+(?:[.-][0-9]+)?)/?$",
-    "order": "desc"
+    "order": "desc",
+    "synthesize": {
+      "urlTemplate": "{manga}chapter-{n}/",
+      "nameTemplate": "الفصل {n}",
+      "from": 1
+    }
   },
   "content": {
     "verified": true,
     "note": "نص الفصل في .ne-reader-chapter-text كفقرات <p>؛ الفقرات الفارغة تُحذف.",
     "paragraphs": ".ne-reader-chapter-text p"
+  },
+  "home": {
+    "url": "/",
+    "sections": [
+      {
+        "container": "section.rw-home-section",
+        "title": {
+          "selector": "h2",
+          "attr": "text"
+        },
+        "list": "article.ne-card",
+        "item": {
+          "url": {
+            "selector": "a.ne-card-cover",
+            "attr": "href"
+          },
+          "title": {
+            "selector": "a.ne-card-title",
+            "attr": [
+              "title",
+              "text"
+            ]
+          },
+          "cover": {
+            "selector": "img",
+            "attr": [
+              "src",
+              "data-src"
+            ]
+          },
+          "status": {
+            "selector": ".ne-status-badge",
+            "attr": "text",
+            "optional": true
+          },
+          "subtitle": {
+            "selector": ".ne-card-meta",
+            "attr": "text",
+            "optional": true
+          }
+        }
+      }
+    ]
   }
 }

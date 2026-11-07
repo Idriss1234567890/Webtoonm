@@ -4,30 +4,40 @@
   "id": "mangalek",
   "name": "مانجا ليك (Mangalek)",
   "lang": "ar",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://mangalik.net",
   "nsfw": false,
   "iconUrl": "https://mangalik.net/wp-content/uploads/2026/01/cropped-512-4-192x192.png",
-
   "headers": {
     "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
     "Referer": "https://mangalik.net/",
     "Accept-Language": "ar,en;q=0.8"
   },
-
   "latest": {
     "verified": true,
     "firstPageUrl": "/",
     "url": "/page/{page}/",
     "list": "#loop-content .page-item-detail",
     "item": {
-      "url":   { "selector": ".post-title h3 a", "attr": "href" },
-      "title": { "selector": ".post-title h3 a", "attr": "text" },
-      "cover": { "selector": ".item-thumb img", "attr": ["data-src", "data-lazy-src", "src"] }
+      "url": {
+        "selector": ".post-title h3 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".post-title h3 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".item-thumb img",
+        "attr": [
+          "data-src",
+          "data-lazy-src",
+          "src"
+        ]
+      }
     },
     "nextPage": ".wp-pagenavi a.nextpostslink"
   },
-
   "popular": {
     "verified": false,
     "note": "ترتيب المشاهدات في قالب Madara (m_orderby=views). لم يُتحقق منه على الموقع بعد؛ إن لم يعمل عدّل المحددات.",
@@ -35,13 +45,25 @@
     "url": "/manga/page/{page}/?m_orderby=views",
     "list": "#loop-content .page-item-detail",
     "item": {
-      "url":   { "selector": ".post-title h3 a", "attr": "href" },
-      "title": { "selector": ".post-title h3 a", "attr": "text" },
-      "cover": { "selector": ".item-thumb img", "attr": ["data-src", "data-lazy-src", "src"] }
+      "url": {
+        "selector": ".post-title h3 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".post-title h3 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".item-thumb img",
+        "attr": [
+          "data-src",
+          "data-lazy-src",
+          "src"
+        ]
+      }
     },
     "nextPage": ".wp-pagenavi a.nextpostslink"
   },
-
   "completed": {
     "verified": false,
     "note": "الأعمال المكتملة في قالب Madara (status[]=end). لم يُتحقق منه على الموقع بعد.",
@@ -49,13 +71,25 @@
     "url": "/manga/page/{page}/?status%5B%5D=end&m_orderby=latest",
     "list": "#loop-content .page-item-detail",
     "item": {
-      "url":   { "selector": ".post-title h3 a", "attr": "href" },
-      "title": { "selector": ".post-title h3 a", "attr": "text" },
-      "cover": { "selector": ".item-thumb img", "attr": ["data-src", "data-lazy-src", "src"] }
+      "url": {
+        "selector": ".post-title h3 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".post-title h3 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".item-thumb img",
+        "attr": [
+          "data-src",
+          "data-lazy-src",
+          "src"
+        ]
+      }
     },
     "nextPage": ".wp-pagenavi a.nextpostslink"
   },
-
   "search": {
     "verified": false,
     "note": "Selecteurs standard du theme Madara, non verifies : aucun fichier de resultats de recherche n'a encore ete fourni.",
@@ -63,9 +97,22 @@
     "url": "/page/{page}/?s={query}&post_type=wp-manga",
     "list": ".c-tabs-item .c-tabs-item__content",
     "item": {
-      "url":   { "selector": ".post-title h3 a, .post-title h4 a", "attr": "href" },
-      "title": { "selector": ".post-title h3 a, .post-title h4 a", "attr": "text" },
-      "cover": { "selector": ".tab-thumb img", "attr": ["data-src", "data-lazy-src", "src"] }
+      "url": {
+        "selector": ".post-title h3 a, .post-title h4 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".post-title h3 a, .post-title h4 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".tab-thumb img",
+        "attr": [
+          "data-src",
+          "data-lazy-src",
+          "src"
+        ]
+      }
     },
     "nextPage": ".wp-pagenavi a.nextpostslink, .nav-previous a",
     "quickSearch": {
@@ -73,24 +120,62 @@
       "note": "Autocompletion du site (vue dans le script de la page) : renvoie titre + url, sans couverture.",
       "method": "POST",
       "url": "/wp-admin/admin-ajax.php",
-      "form": { "action": "wp-manga-search-manga", "title": "{query}" },
-      "response": { "listPath": "data", "titleField": "title", "urlField": "url" }
+      "form": {
+        "action": "wp-manga-search-manga",
+        "title": "{query}"
+      },
+      "response": {
+        "listPath": "data",
+        "titleField": "title",
+        "urlField": "url"
+      }
     }
   },
-
   "coverTransform": [
-    { "regex": "-\\d{2,4}x\\d{2,4}(?=\\.[A-Za-z0-9]+$)", "replace": "" }
+    {
+      "regex": "-\\d{2,4}x\\d{2,4}(?=\\.[A-Za-z0-9]+$)",
+      "replace": ""
+    }
   ],
-
   "details": {
     "verified": true,
-    "title":       { "selector": ".profile-manga .post-title h1", "attr": "text" },
-    "cover":       { "selector": ".profile-manga .summary_image img", "attr": ["data-src", "data-lazy-src", "src"] },
-    "description": { "selector": ".description-summary .summary__content", "attr": "text" },
-    "genres":      { "selector": ".genres-content a", "attr": "text", "multiple": true },
-    "author":      { "selector": ".author-content a", "attr": "text", "multiple": true, "optional": true },
-    "artist":      { "selector": ".artist-content a", "attr": "text", "multiple": true, "optional": true },
-    "status":      { "selector": ".post-status .post-content_item .summary-content", "attr": "text" },
+    "title": {
+      "selector": ".profile-manga .post-title h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".profile-manga .summary_image img",
+      "attr": [
+        "data-src",
+        "data-lazy-src",
+        "src"
+      ]
+    },
+    "description": {
+      "selector": ".description-summary .summary__content",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".genres-content a",
+      "attr": "text",
+      "multiple": true
+    },
+    "author": {
+      "selector": ".author-content a",
+      "attr": "text",
+      "multiple": true,
+      "optional": true
+    },
+    "artist": {
+      "selector": ".artist-content a",
+      "attr": "text",
+      "multiple": true,
+      "optional": true
+    },
+    "status": {
+      "selector": ".post-status .post-content_item .summary-content",
+      "attr": "text"
+    },
     "statusMap": {
       "ongoing": "ongoing",
       "on going": "ongoing",
@@ -104,43 +189,116 @@
       "hiatus": "on_hold"
     }
   },
-
   "chapters": {
     "verified": false,
     "note": "La liste des chapitres est chargee par AJAX (#manga-chapters-holder). L'URL et les selecteurs sont ceux du theme Madara, a confirmer avec une vraie reponse.",
-    "mangaId": { "selector": "#manga-chapters-holder", "attr": "data-id", "fallback": { "selector": "input.rating-post-id", "attr": "value" } },
+    "mangaId": {
+      "selector": "#manga-chapters-holder",
+      "attr": "data-id",
+      "fallback": {
+        "selector": "input.rating-post-id",
+        "attr": "value"
+      }
+    },
     "request": {
       "method": "POST",
       "url": "{mangaUrl}ajax/chapters/",
-      "headers": { "X-Requested-With": "XMLHttpRequest" }
+      "headers": {
+        "X-Requested-With": "XMLHttpRequest"
+      }
     },
     "fallbackRequest": {
       "method": "POST",
       "url": "/wp-admin/admin-ajax.php",
-      "headers": { "X-Requested-With": "XMLHttpRequest" },
-      "form": { "action": "manga_get_chapters", "manga": "{mangaId}" }
+      "headers": {
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      "form": {
+        "action": "manga_get_chapters",
+        "manga": "{mangaId}"
+      }
     },
     "list": "li.wp-manga-chapter",
     "item": {
-      "url":  { "selector": "a", "attr": "href" },
-      "name": { "selector": "a", "attr": "text" },
-      "date": { "selector": ".chapter-release-date i, .chapter-release-date, .post-on", "attr": "text", "optional": true },
-      "dateTitle": { "selector": ".chapter-release-date a, .c-new-tag a", "attr": "title", "optional": true }
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "a",
+        "attr": "text"
+      },
+      "date": {
+        "selector": ".chapter-release-date i, .chapter-release-date, .post-on",
+        "attr": "text",
+        "optional": true
+      },
+      "dateTitle": {
+        "selector": ".chapter-release-date a, .c-new-tag a",
+        "attr": "title",
+        "optional": true
+      }
     },
     "numberFromUrl": "/([0-9]+(?:[.-][0-9]+)?)/?$",
     "order": "desc",
-    "dateFormats": ["MMMM d, yyyy"],
+    "dateFormats": [
+      "MMMM d, yyyy"
+    ],
     "arabicMonths": {
-      "يناير": 1, "فبراير": 2, "مارس": 3, "أبريل": 4, "مايو": 5, "يونيو": 6,
-      "يوليو": 7, "أغسطس": 8, "سبتمبر": 9, "أكتوبر": 10, "نوفمبر": 11, "ديسمبر": 12
+      "يناير": 1,
+      "فبراير": 2,
+      "مارس": 3,
+      "أبريل": 4,
+      "مايو": 5,
+      "يونيو": 6,
+      "يوليو": 7,
+      "أغسطس": 8,
+      "سبتمبر": 9,
+      "أكتوبر": 10,
+      "نوفمبر": 11,
+      "ديسمبر": 12
     },
     "relativeDatePattern": "^(?:(\\d+)\\s*)?(دقيقة|دقيقتين|دقائق|ساعة|ساعتين|ساعات|يوم|يومين|أيام|اسبوع|أسبوع|أسبوعين|أسابيع|شهر|شهرين|أشهر)\\s*ago$"
   },
-
   "pages": {
     "verified": true,
     "list": ".reading-content img.wp-manga-chapter-img",
-    "image": { "attr": ["data-src", "data-lazy-src", "src"] },
-    "imageHeaders": { "Referer": "https://mangalik.net/" }
+    "image": {
+      "attr": [
+        "data-src",
+        "data-lazy-src",
+        "src"
+      ]
+    },
+    "imageHeaders": {
+      "Referer": "https://mangalik.net/"
+    }
+  },
+  "home": {
+    "url": "/",
+    "sections": [
+      {
+        "title": "آخر التحديثات",
+        "list": "#loop-content .page-item-detail",
+        "item": {
+          "url": {
+            "selector": ".post-title h3 a",
+            "attr": "href"
+          },
+          "title": {
+            "selector": ".post-title h3 a",
+            "attr": "text"
+          },
+          "cover": {
+            "selector": ".item-thumb img",
+            "attr": [
+              "data-src",
+              "data-lazy-src",
+              "src"
+            ]
+          }
+        }
+      }
+    ]
   }
 }

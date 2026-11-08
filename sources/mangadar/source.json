@@ -4,7 +4,7 @@
   "id": "mangadar",
   "name": "مانجا دار (MangaDar)",
   "lang": "ar",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://mangadar.com",
   "nsfw": false,
   "iconUrl": "https://mangadar.com/wp-content/uploads/2026/10/android-chrome-512x512-1-300x300.png",
@@ -29,14 +29,38 @@
       },
       "cover": {
         "selector": "img",
-        "attr": "src"
+        "attr": [
+          "src",
+          "data-src"
+        ]
       }
     },
     "nextPage": "main#main-content a[href*='/manga/page/']"
   },
   "search": {
-    "verified": false,
-    "note": "لم تتضمن الملفات المرسلة صفحة نتائج بحث؛ لم يتم تخمين رابط البحث أو محدداته."
+    "verified": true,
+    "note": "تم التحقق من رابط البحث باستخدام ?s={query}&post_type=manga. محددات النتائج والترقيم تحتاج اختبار صفحة نتائج فعلية.",
+    "firstPageUrl": "/?s={query}&post_type=manga",
+    "url": "/?s={query}&post_type=manga&paged={page}",
+    "list": "main#main-content a.group.block",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      }
+    },
+    "nextPage": "main#main-content a[href*='paged='], main#main-content a[href*='/page/']"
   },
   "details": {
     "verified": true,
@@ -46,7 +70,10 @@
     },
     "cover": {
       "selector": "main#main-content img[src*='-cover-']",
-      "attr": "src"
+      "attr": [
+        "src",
+        "data-src"
+      ]
     },
     "description": {
       "selector": "main#main-content [x-ref='synContent']",
@@ -101,40 +128,6 @@
       "decodeBase64": true,
       "decodedValue": "absolute-url"
     },
-    "webview": true,
-    "webviewSelector": "#mdg-chapter-reader [data-reader-image]",
-    "webviewAttrs": [
-      "data-mds"
-    ],
-    "webviewDecodeBase64": true,
-    "webviewTotal": "#mdg-chapter-reader",
-    "webviewTotalAttr": "data-mdg-config",
-    "webviewTotalJsonField": "totalPages",
-    "imageHeaders": {
-      "Referer": "https://mangadar.com/"
-    }
-  },
-  "home": {
-    "url": "/manga/",
-    "sections": [
-      {
-        "title": "مكتبة المانجا",
-        "list": "main#main-content a.group.block",
-        "item": {
-          "url": {
-            "selector": "a",
-            "attr": "href"
-          },
-          "title": {
-            "selector": "h3",
-            "attr": "text"
-          },
-          "cover": {
-            "selector": "img",
-            "attr": "src"
-          }
-        }
-      }
-    ]
+    "webview": true
   }
 }

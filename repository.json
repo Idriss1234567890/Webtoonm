@@ -23,8 +23,8 @@
       "path": "sources/starzmanga/source.json"
     },
     {
-      "id": "newsource",
-      "path": "sources/newsource/source.json"
+      "id": "mangadar",
+      "path": "sources/mangadar/source.json"
     }
   ]
 }

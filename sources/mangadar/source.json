@@ -1,0 +1,140 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "mangadar",
+  "name": "مانجا دار (MangaDar)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://mangadar.com",
+  "nsfw": false,
+  "iconUrl": "https://mangadar.com/wp-content/uploads/2026/10/android-chrome-512x512-1-300x300.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://mangadar.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "firstPageUrl": "/manga/",
+    "url": "/manga/page/{page}/",
+    "list": "main#main-content a.group.block",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": "src"
+      }
+    },
+    "nextPage": "main#main-content a[href*='/manga/page/']"
+  },
+  "search": {
+    "verified": false,
+    "note": "لم تتضمن الملفات المرسلة صفحة نتائج بحث؛ لم يتم تخمين رابط البحث أو محدداته."
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "main#main-content h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": "main#main-content img[src*='-cover-']",
+      "attr": "src"
+    },
+    "description": {
+      "selector": "main#main-content [x-ref='synContent']",
+      "attr": "text",
+      "optional": true
+    },
+    "genres": {
+      "selector": "main#main-content a[href*='/genres/']",
+      "attr": "text",
+      "multiple": true,
+      "optional": true
+    },
+    "status": {
+      "selector": "main#main-content [data-manga-status]",
+      "attr": "data-manga-status",
+      "optional": true
+    },
+    "statusMap": {
+      "مستمر": "ongoing",
+      "مستمرة": "ongoing",
+      "ongoing": "ongoing",
+      "مكتمل": "completed",
+      "مكتملة": "completed",
+      "completed": "completed",
+      "متوقف": "on_hold",
+      "ملغي": "cancelled",
+      "cancelled": "cancelled"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "قائمة الفصول مضمنة في JSON داخل script#mdg-manga-chapters-json. كل صف: [chapterId, number, url, timestamp, ...].",
+    "inline": true,
+    "scriptId": "mdg-manga-chapters-json",
+    "scriptRegex": "\\[(\\d+),\"([^\"]+)\",\"([^\"]+)\",(\\d+),\\d+\\]",
+    "scriptUrl": "{3}",
+    "scriptName": "الفصل {2}",
+    "scriptNumberGroup": "2",
+    "scriptDateGroup": "4",
+    "dateUnit": "seconds",
+    "numberFromUrl": "/([^/]+)/?$",
+    "order": "desc"
+  },
+  "pages": {
+    "verified": true,
+    "note": "توجد 12 صفحة في HTML المرفق. الروابط الموقعة متاحة في script id=mv-pages-{chapterId}، كما تحمل الصور data-mds بصيغة Base64. يجب استخراجها من HTML كل مرة وعدم تخزين الروابط الموقعة كروابط دائمة.",
+    "list": "#mdg-chapter-reader [data-reader-image]",
+    "image": {
+      "attr": [
+        "data-mds"
+      ],
+      "decodeBase64": true,
+      "decodedValue": "absolute-url"
+    },
+    "webview": true,
+    "webviewSelector": "#mdg-chapter-reader [data-reader-image]",
+    "webviewAttrs": [
+      "data-mds"
+    ],
+    "webviewDecodeBase64": true,
+    "webviewTotal": "#mdg-chapter-reader",
+    "webviewTotalAttr": "data-mdg-config",
+    "webviewTotalJsonField": "totalPages",
+    "imageHeaders": {
+      "Referer": "https://mangadar.com/"
+    }
+  },
+  "home": {
+    "url": "/manga/",
+    "sections": [
+      {
+        "title": "مكتبة المانجا",
+        "list": "main#main-content a.group.block",
+        "item": {
+          "url": {
+            "selector": "a",
+            "attr": "href"
+          },
+          "title": {
+            "selector": "h3",
+            "attr": "text"
+          },
+          "cover": {
+            "selector": "img",
+            "attr": "src"
+          }
+        }
+      }
+    ]
+  }
+}

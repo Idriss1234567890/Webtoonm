@@ -17,6 +17,10 @@
     {
       "id": "riwayatlive",
       "path": "sources/riwayatlive/source.json"
+    },
+    {
+      "id": "starzmanga",
+      "path": "sources/starzmanga/source.json"
     }
   ]
 }

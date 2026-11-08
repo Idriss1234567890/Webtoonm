@@ -21,6 +21,10 @@
     {
       "id": "starzmanga",
       "path": "sources/starzmanga/source.json"
+    },
+    {
+      "id": "newsource",
+      "path": "sources/newsource/source.json"
     }
   ]
 }

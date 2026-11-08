@@ -4,7 +4,7 @@
   "id": "azorafly",
   "name": "أزورا مانجا (Azora)",
   "lang": "ar",
-  "version": 5,
+  "version": 6,
   "baseUrl": "https://azorafly.com",
   "nsfw": false,
   "iconUrl": "https://storage.azorafly.com/public/upload/2025/12/24/c925c7f3-2310-4e90-9b62-7fae04fe1c36.webp",
@@ -67,9 +67,9 @@
   },
   "search": {
     "verified": false,
-    "note": "لم تُرسل صفحة بحث؛ الرابط والمحددات تخمين. أرسل صفحة نتائج بحث لإكمالها.",
-    "firstPageUrl": "/series?search={query}",
-    "url": "/series?search={query}&page={page}",
+    "note": "تم تصحيح معامل البحث إلى searchTerm حسب SearchAction في HTML. محددات النتائج والترقيم تحتاج اختبار صفحة نتائج فعلية.",
+    "firstPageUrl": "/series/?searchTerm={query}",
+    "url": "/series/?searchTerm={query}&page={page}",
     "list": "a.relative.block[href^=\"/series/\"][title]",
     "item": {
       "url": {
@@ -78,9 +78,7 @@
       },
       "title": {
         "selector": "a",
-        "attr": [
-          "title"
-        ]
+        "attr": "title"
       },
       "cover": {
         "selector": "img",

@@ -25,10 +25,10 @@
     {
       "id": "mangadar",
       "path": "sources/mangadar/source.json"
-    }
-        {
+    },
+    {
       "id": "animerco",
       "path": "sources/animerco/source.json"
-        }
+    }
   ]
 }

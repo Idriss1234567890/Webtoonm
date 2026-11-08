@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "id": "animerco",
+  "type": "anime",
+  "name": "أنمي ركو (Animerco)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://eva.animerco.org",
+  "nsfw": false,
+  "iconUrl": "https://eva.animerco.org/wp-content/uploads/2024/03/cropped-android-chrome-512x512-1-192x192.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://eva.animerco.org/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "firstPageUrl": "/animes/",
+    "url": "/animes/page/{page}/",
+    "list": ".media-block",
+    "item": {
+      "url": {
+        "selector": ".anime-card .info a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-card .info h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".anime-card a.image",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": ".anime-type",
+        "attr": "text"
+      },
+      "subtitle": {
+        "selector": ".anime-aired",
+        "attr": "text"
+      }
+    },
+    "nextPage": "link[rel=next]"
+  },
+  "popular": {
+    "verified": false,
+    "firstPageUrl": "/trending/?get=tv",
+    "url": "/trending/page/{page}/?get=tv",
+    "list": ".media-block",
+    "item": {
+      "url": {
+        "selector": ".anime-card .info a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-card .info h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".anime-card a.image",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": ".anime-type",
+        "attr": "text"
+      },
+      "subtitle": {
+        "selector": ".anime-aired",
+        "attr": "text"
+      }
+    },
+    "nextPage": "link[rel=next]",
+    "note": "رابط «الأكثر شعبية» من قائمة الموقع؛ لم تُرفع صفحته للتحقق. عدّل المحددات إن لزم."
+  },
+  "search": {
+    "verified": false,
+    "firstPageUrl": "/?s={query}",
+    "url": "/page/{page}/?s={query}",
+    "list": ".media-block",
+    "item": {
+      "url": {
+        "selector": ".anime-card .info a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-card .info h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".anime-card a.image",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": ".anime-type",
+        "attr": "text"
+      },
+      "subtitle": {
+        "selector": ".anime-aired",
+        "attr": "text"
+      }
+    },
+    "nextPage": "link[rel=next]",
+    "note": "بحث ووردبريس القياسي /?s= ؛ لم تُرفع صفحة نتائجه للتحقق."
+  },
+  "coverTransform": [
+    {
+      "regex": "-\\d{2,4}x\\d{2,4}(?=\\.[A-Za-z0-9]+$)",
+      "replace": ""
+    }
+  ],
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": ".head-box .media-title h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".details-section .anime-card.player .image",
+      "attr": [
+        "data-src",
+        "src"
+      ]
+    },
+    "description": {
+      "selector": ".media-story .content p",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".media-story .genres a",
+      "attr": "text"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "seasons": {
+      "list": ".media-seasons .episodes-lists li",
+      "url": {
+        "selector": "a.title",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "a.title h3",
+        "attr": "text"
+      },
+      "nameRegex": "^(الموسم\\s*\\d+)"
+    },
+    "list": "ul#filter li",
+    "numberFromUrl": "-(\\d+)/?$",
+    "item": {
+      "url": {
+        "selector": "a.title",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "a.image",
+        "attr": "title"
+      },
+      "number": {
+        "selector": "li",
+        "attr": "data-number"
+      }
+    }
+  },
+  "videos": {
+    "verified": true,
+    "note": "روابط embed موقّعة وتنتهي بعد ~ساعة؛ تُجلب من صفحة الحلقة عند التشغيل. سيرفر mega غير مدعوم.",
+    "list": ".server-list a.option",
+    "name": {
+      "selector": ".server",
+      "attr": "text"
+    },
+    "embed": {
+      "selector": "a.option",
+      "attr": "data-embed-url"
+    }
+  }
+}

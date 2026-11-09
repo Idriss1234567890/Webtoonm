@@ -23,6 +23,10 @@
       "path": "sources/realmnovel/source.json"
     },
     {
+      "id": "cenele",
+      "path": "sources/cenele/source.json"
+    },
+    {
       "id": "starzmanga",
       "path": "sources/starzmanga/source.json"
     },
@@ -33,10 +37,6 @@
     {
       "id": "animerco",
       "path": "sources/animerco/source.json"
-    },
-    {
-      "id": "cenele",
-      "path": "sources/cenele/source.json"
     }
   ]
 }

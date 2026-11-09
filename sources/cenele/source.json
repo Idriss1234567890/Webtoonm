@@ -16,7 +16,7 @@
   },
   "latest": {
     "verified": true,
-    "note": "مكتبة الروايات مرتبة حسب الأحدث. الفلتر عبر ?m_orderby=latest",
+    "note": "قالب Madara مخصص (nhv). 10 روايات في الصفحة، 26 صفحة. فرز: m_orderby=latest|views|rating|gems|alphabet.",
     "firstPageUrl": "/cont/?m_orderby=latest",
     "url": "/cont/page/{page}/?m_orderby=latest",
     "list": "article.nhv-library-card",
@@ -30,7 +30,7 @@
         "attr": "text"
       },
       "cover": {
-        "selector": "a.nhv-library-card__cover img",
+        "selector": "img",
         "attr": [
           "src",
           "data-src"
@@ -42,18 +42,18 @@
         "optional": true
       },
       "subtitle": {
-        "selector": ".nhv-library-card__excerpt",
+        "selector": ".nhv-library-card__chip",
         "attr": "text",
         "optional": true
       }
     },
     "nextPage": "a.next.page-numbers"
   },
-  "completed": {
+  "popular": {
     "verified": false,
-    "note": "الروايات المكتملة عبر فلتر التصنيف مكتملة",
-    "firstPageUrl": "/cont-genre/مكتملة/",
-    "url": "/cont-genre/مكتملة/page/{page}/",
+    "note": "نفس القالب مع m_orderby=views (الرابط من أزرار الفرز، الترقيم لم يُجرَّب).",
+    "firstPageUrl": "/cont/?m_orderby=views",
+    "url": "/cont/page/{page}/?m_orderby=views",
     "list": "article.nhv-library-card",
     "item": {
       "url": {
@@ -65,7 +65,7 @@
         "attr": "text"
       },
       "cover": {
-        "selector": "a.nhv-library-card__cover img",
+        "selector": "img",
         "attr": [
           "src",
           "data-src"
@@ -77,7 +77,7 @@
         "optional": true
       },
       "subtitle": {
-        "selector": ".nhv-library-card__excerpt",
+        "selector": ".nhv-library-card__chip",
         "attr": "text",
         "optional": true
       }
@@ -86,21 +86,21 @@
   },
   "search": {
     "verified": false,
-    "note": "البحث عبر AJAX في nhv-library.js. البحث مباشر في /cont/ باستخدام باراميتر ?s=. لم يُختبر بعد.",
-    "firstPageUrl": "/cont/?s={query}",
-    "url": "/cont/page/{page}/?s={query}",
-    "list": "article.nhv-library-card",
+    "note": "بحث Madara القياسي (post_type=wp-manga). شريط البحث في المكتبة يعمل بـ JS خارجي لذلك لم يُتحقق؛ قد تكون بطاقات النتائج بقالب مختلف (.c-tabs-item__content).",
+    "firstPageUrl": "/?s={query}&post_type=wp-manga",
+    "url": "/page/{page}/?s={query}&post_type=wp-manga",
+    "list": "article.nhv-library-card, .c-tabs-item__content",
     "item": {
       "url": {
-        "selector": "a.nhv-library-card__cover",
+        "selector": "a[href*=\"/cont/\"]",
         "attr": "href"
       },
       "title": {
-        "selector": "h2.nhv-library-card__title a",
+        "selector": "h2.nhv-library-card__title a, .post-title h3 a",
         "attr": "text"
       },
       "cover": {
-        "selector": "a.nhv-library-card__cover img",
+        "selector": "img",
         "attr": [
           "src",
           "data-src"
@@ -108,11 +108,6 @@
       },
       "status": {
         "selector": ".nhv-library-card__status",
-        "attr": "text",
-        "optional": true
-      },
-      "subtitle": {
-        "selector": ".nhv-library-card__excerpt",
         "attr": "text",
         "optional": true
       }
@@ -133,7 +128,7 @@
       ]
     },
     "description": {
-      "selector": ".nhv-novel-synopsis",
+      "selector": ".nhv-novel-synopsis p",
       "attr": "text"
     },
     "genres": {
@@ -142,7 +137,7 @@
       "multiple": true
     },
     "author": {
-      "selector": ".nhv-novel-meta a[href*='/cont-author/']",
+      "selector": ".nhv-novel-meta a[href*=\"/cont-author/\"]",
       "attr": "text",
       "multiple": true,
       "optional": true
@@ -154,20 +149,20 @@
     "statusMap": {
       "مستمرة": "ongoing",
       "مكتملة": "completed",
-      "متوقفة": "on_hold",
       "متوقفة مؤقتًا": "on_hold",
+      "متوقفة": "on_hold",
       "ملغاة": "cancelled"
     }
   },
   "chapters": {
-    "verified": true,
-    "note": "قائمة الفصول في قسم آخر 8 فصول (ul.nhv-novel-recent__list). القائمة الكاملة تُحمَّل عبر AJAX باستخدام nhvNovelV2.chaptersNonce. الفصول مرتبة تنازلياً (الأحدث أولاً).",
+    "verified": false,
+    "note": "صفحة الرواية تعرض آخر 8 فصول فقط (inline)؛ القائمة الكاملة تُحمَّل بـ JS. نجرب نقطة Madara القياسية POST {الرواية}ajax/chapters/ وإن فشلت نرجع للـ 8 فصول (inlineFallback). روابط الفصول تحتوي اسم المجلد: /cont/slug/مجلد-1-.../الفصل-N/ لذلك لا يمكن synthesize.",
     "request": {
-      "method": "GET",
-      "url": "{mangaUrl}"
+      "method": "POST",
+      "url": "{mangaUrl}ajax/chapters/"
     },
     "inlineFallback": true,
-    "list": "ul.nhv-novel-recent__list li.wp-manga-chapter a",
+    "list": "li.wp-manga-chapter",
     "item": {
       "url": {
         "selector": "a",
@@ -175,7 +170,7 @@
       },
       "name": {
         "selector": "a",
-        "attr": "text"
+        "attr": "ownText"
       },
       "date": {
         "selector": ".chapter-release-date",
@@ -183,18 +178,19 @@
         "optional": true
       }
     },
+    "numberFromUrl": "(?:%d8%a7%d9%84%d9%81%d8%b5%d9%84|الفصل)-([0-9]+(?:[.-][0-9]+)?)/?$",
     "order": "desc"
   },
   "content": {
     "verified": true,
-    "note": "نص الفصل في story-fold > p. الفقرات الفارغة وعناصر الحماية (blockquote.r4616db4097c4883) تُحذف.",
-    "paragraphs": "story-fold p"
+    "note": "النص داخل .reading-content story-fold كفقرات <p>؛ نصف الفقرات فارغة (تُحذف). نستثني الإعلان (aside الجواهر/VIP) باستعمال story-fold.",
+    "paragraphs": ".reading-content story-fold p"
   },
   "home": {
-    "url": "/",
+    "url": "/cont/?m_orderby=latest",
     "sections": [
       {
-        "container": "section.nhv-library",
+        "container": "main.nhv-library",
         "title": {
           "selector": "h1.nhv-library__title",
           "attr": "text"
@@ -210,7 +206,7 @@
             "attr": "text"
           },
           "cover": {
-            "selector": "a.nhv-library-card__cover img",
+            "selector": "img",
             "attr": [
               "src",
               "data-src"
@@ -222,7 +218,7 @@
             "optional": true
           },
           "subtitle": {
-            "selector": ".nhv-library-card__excerpt",
+            "selector": ".nhv-library-card__chip",
             "attr": "text",
             "optional": true
           }

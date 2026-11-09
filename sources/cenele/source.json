@@ -5,7 +5,7 @@
   "name": "فضاء الروايات",
   "lang": "ar",
   "type": "novel",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://cenele.com",
   "nsfw": false,
   "iconUrl": "https://cenele.com/wp-content/uploads/2026/08/cropped-فضاء-روايات-32x32.png",
@@ -156,10 +156,13 @@
   },
   "chapters": {
     "verified": false,
-    "note": "صفحة الرواية تعرض آخر 8 فصول فقط (inline)؛ القائمة الكاملة تُحمَّل بـ JS. نجرب نقطة Madara القياسية POST {الرواية}ajax/chapters/ وإن فشلت نرجع للـ 8 فصول (inlineFallback). روابط الفصول تحتوي اسم المجلد: /cont/slug/مجلد-1-.../الفصل-N/ لذلك لا يمكن synthesize.",
+    "note": "صفحة الرواية تعرض آخر 8 فصول فقط؛ القائمة الكاملة نجربها عبر POST {الرواية}ajax/chapters/ (Madara) وإن فشلت يقرأ التطبيق الـ8 من الصفحة (inlineFallback). لا يمكن synthesize لأن الرابط يحتوي اسم المجلد.",
     "request": {
       "method": "POST",
-      "url": "{mangaUrl}ajax/chapters/"
+      "url": "{mangaUrl}ajax/chapters/",
+      "headers": {
+        "X-Requested-With": "XMLHttpRequest"
+      }
     },
     "inlineFallback": true,
     "list": "li.wp-manga-chapter",
@@ -170,7 +173,7 @@
       },
       "name": {
         "selector": "a",
-        "attr": "ownText"
+        "attr": "text"
       },
       "date": {
         "selector": ".chapter-release-date",
@@ -178,7 +181,7 @@
         "optional": true
       }
     },
-    "numberFromUrl": "(?:%d8%a7%d9%84%d9%81%d8%b5%d9%84|الفصل)-([0-9]+(?:[.-][0-9]+)?)/?$",
+    "numberFromUrl": "(?i)(?:%d8%a7%d9%84%d9%81%d8%b5%d9%84|الفصل)-([0-9]+(?:[.-][0-9]+)?)/?$",
     "order": "desc"
   },
   "content": {

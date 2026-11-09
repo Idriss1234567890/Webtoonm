@@ -1,0 +1,188 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "realmnovel",
+  "name": "realmnovel",
+  "lang": "ar",
+  "type": "novel",
+  "version": 1,
+  "baseUrl": "https://realmnovel.com",
+  "nsfw": false,
+  "iconUrl": "https://realmnovel.com/static/favicon-32.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://realmnovel.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "الصفحة الرئيسية = آخر التحديثات، 24 رواية في الصفحة. الترقيم عبر ?page=N (الموقع يستخدم تمرير لا نهائي عبر /_more لكن الـ HTML يدعم ?page أيضاً).",
+    "firstPageUrl": "/",
+    "url": "/?page={page}",
+    "list": "a.g3card",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".g3title",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "status": {
+        "selector": ".g3status",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".g3sub",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "nav.seo-pager a[rel=next]"
+  },
+  "search": {
+    "verified": false,
+    "note": "نموذج البحث GET /?q= . بطاقات النتائج بنفس شكل الرئيسية (مفترض). ترقيم نتائج البحث ?q=..&page=N لم يُجرَّب.",
+    "firstPageUrl": "/?q={query}",
+    "url": "/?q={query}&page={page}",
+    "list": "a.g3card",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".g3title",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "status": {
+        "selector": ".g3status",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".g3sub",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "nav.seo-pager a[rel=next]"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "article.novel-head h1.h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": "article.novel-head img.cover",
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "description": {
+      "selector": "article.novel-head p.desc",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": "article.novel-head a.tag",
+      "attr": "text",
+      "multiple": true
+    },
+    "status": {
+      "selector": "article.novel-head span.badge:nth-of-type(1)",
+      "attr": "text"
+    },
+    "statusMap": {
+      "مستمرة": "ongoing",
+      "مكتملة": "completed",
+      "متوقفة مؤقتًا": "on_hold",
+      "متوقفة": "on_hold",
+      "ملغاة": "cancelled"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "الفصول في صفحة الرواية نفسها. الموقع مجاني فقط لأول 50 فصل (maxFree:50)؛ الباقي مقفل (class is-locked) ويُفتح عبر التطبيق/النقاط، لذلك يتم استبعاد المقفل ولا نستعمل synthesize.",
+    "request": {
+      "method": "GET",
+      "url": "{mangaUrl}"
+    },
+    "inlineFallback": true,
+    "list": "a.chapter-row:not(.is-locked)",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "span:first-child",
+        "attr": "text"
+      }
+    },
+    "numberFromUrl": "chapter/([0-9]+)/?$",
+    "order": "asc"
+  },
+  "content": {
+    "verified": true,
+    "note": "نص الفصل في .chapter-content كفقرات <p>. الفقرة الأولى تكرر عنوان الفصل (ممكن تجاهلها).",
+    "paragraphs": ".chapter-content p"
+  },
+  "home": {
+    "url": "/",
+    "sections": [
+      {
+        "container": "main.container",
+        "title": {
+          "selector": "h1.h1",
+          "attr": "text"
+        },
+        "list": "a.g3card",
+        "item": {
+          "url": {
+            "selector": "a",
+            "attr": "href"
+          },
+          "title": {
+            "selector": ".g3title",
+            "attr": "text"
+          },
+          "cover": {
+            "selector": "img",
+            "attr": [
+              "src",
+              "data-src"
+            ]
+          },
+          "status": {
+            "selector": ".g3status",
+            "attr": "text",
+            "optional": true
+          },
+          "subtitle": {
+            "selector": ".g3sub",
+            "attr": "text",
+            "optional": true
+          }
+        }
+      }
+    ]
+  }
+}

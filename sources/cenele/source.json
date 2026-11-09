@@ -1,0 +1,233 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "cenele",
+  "name": "فضاء الروايات",
+  "lang": "ar",
+  "type": "novel",
+  "version": 1,
+  "baseUrl": "https://cenele.com",
+  "nsfw": false,
+  "iconUrl": "https://cenele.com/wp-content/uploads/2026/08/cropped-فضاء-روايات-32x32.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://cenele.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "مكتبة الروايات مرتبة حسب الأحدث. الفلتر عبر ?m_orderby=latest",
+    "firstPageUrl": "/cont/?m_orderby=latest",
+    "url": "/cont/page/{page}/?m_orderby=latest",
+    "list": "article.nhv-library-card",
+    "item": {
+      "url": {
+        "selector": "a.nhv-library-card__cover",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h2.nhv-library-card__title a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "a.nhv-library-card__cover img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "status": {
+        "selector": ".nhv-library-card__status",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".nhv-library-card__excerpt",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "completed": {
+    "verified": false,
+    "note": "الروايات المكتملة عبر فلتر التصنيف مكتملة",
+    "firstPageUrl": "/cont-genre/مكتملة/",
+    "url": "/cont-genre/مكتملة/page/{page}/",
+    "list": "article.nhv-library-card",
+    "item": {
+      "url": {
+        "selector": "a.nhv-library-card__cover",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h2.nhv-library-card__title a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "a.nhv-library-card__cover img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "status": {
+        "selector": ".nhv-library-card__status",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".nhv-library-card__excerpt",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "search": {
+    "verified": false,
+    "note": "البحث عبر AJAX في nhv-library.js. البحث مباشر في /cont/ باستخدام باراميتر ?s=. لم يُختبر بعد.",
+    "firstPageUrl": "/cont/?s={query}",
+    "url": "/cont/page/{page}/?s={query}",
+    "list": "article.nhv-library-card",
+    "item": {
+      "url": {
+        "selector": "a.nhv-library-card__cover",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h2.nhv-library-card__title a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "a.nhv-library-card__cover img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "status": {
+        "selector": ".nhv-library-card__status",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".nhv-library-card__excerpt",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1.nhv-novel-title",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".nhv-novel-cover img",
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "description": {
+      "selector": ".nhv-novel-synopsis",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".nhv-novel-genres a",
+      "attr": "text",
+      "multiple": true
+    },
+    "author": {
+      "selector": ".nhv-novel-meta a[href*='/cont-author/']",
+      "attr": "text",
+      "multiple": true,
+      "optional": true
+    },
+    "status": {
+      "selector": ".nhv-novel-status strong",
+      "attr": "text"
+    },
+    "statusMap": {
+      "مستمرة": "ongoing",
+      "مكتملة": "completed",
+      "متوقفة": "on_hold",
+      "متوقفة مؤقتًا": "on_hold",
+      "ملغاة": "cancelled"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "قائمة الفصول في قسم آخر 8 فصول (ul.nhv-novel-recent__list). القائمة الكاملة تُحمَّل عبر AJAX باستخدام nhvNovelV2.chaptersNonce. الفصول مرتبة تنازلياً (الأحدث أولاً).",
+    "request": {
+      "method": "GET",
+      "url": "{mangaUrl}"
+    },
+    "inlineFallback": true,
+    "list": "ul.nhv-novel-recent__list li.wp-manga-chapter a",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "a",
+        "attr": "text"
+      },
+      "date": {
+        "selector": ".chapter-release-date",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "order": "desc"
+  },
+  "content": {
+    "verified": true,
+    "note": "نص الفصل في story-fold > p. الفقرات الفارغة وعناصر الحماية (blockquote.r4616db4097c4883) تُحذف.",
+    "paragraphs": "story-fold p"
+  },
+  "home": {
+    "url": "/",
+    "sections": [
+      {
+        "container": "section.nhv-library",
+        "title": {
+          "selector": "h1.nhv-library__title",
+          "attr": "text"
+        },
+        "list": "article.nhv-library-card",
+        "item": {
+          "url": {
+            "selector": "a.nhv-library-card__cover",
+            "attr": "href"
+          },
+          "title": {
+            "selector": "h2.nhv-library-card__title a",
+            "attr": "text"
+          },
+          "cover": {
+            "selector": "a.nhv-library-card__cover img",
+            "attr": [
+              "src",
+              "data-src"
+            ]
+          },
+          "status": {
+            "selector": ".nhv-library-card__status",
+            "attr": "text",
+            "optional": true
+          },
+          "subtitle": {
+            "selector": ".nhv-library-card__excerpt",
+            "attr": "text",
+            "optional": true
+          }
+        }
+      }
+    ]
+  }
+}

@@ -33,6 +33,10 @@
     {
       "id": "animerco",
       "path": "sources/animerco/source.json"
+    },
+    {
+      "id": "cenele",
+      "path": "sources/cenele/source.json"
     }
   ]
 }

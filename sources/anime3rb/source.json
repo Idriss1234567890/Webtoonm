@@ -1,0 +1,208 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "anime3rb",
+  "type": "anime",
+  "name": "أنمي عرب (Anime3rb)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://anime3rb.com",
+  "nsfw": false,
+  "iconUrl": "https://images.anime3rb.com/favicon/favicon-32x32.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://anime3rb.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "موقع Livewire: لا يوجد رابط صفحة تالية، الزر wire:click=nextPage يدل على وجود المزيد، والترقيم عبر ?page=N (مفترض). الترتيب الافتراضي = تاريخ الإضافة. Cloudflare يحميه فقد يظهر WebView للتحقق أول مرة.",
+    "firstPageUrl": "/titles/list",
+    "url": "/titles/list?page={page}",
+    "list": ".title-card",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h2.title-name",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "subtitle": {
+        "selector": ".badge",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "button[wire:click^=nextPage]"
+  },
+  "popular": {
+    "verified": false,
+    "note": "ترتيب بالتقييم (sort_by=rate من قائمة الترتيب في الموقع). لم يُجرَّب.",
+    "firstPageUrl": "/titles/list?sort_by=rate",
+    "url": "/titles/list?sort_by=rate&page={page}",
+    "list": ".title-card",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h2.title-name",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "subtitle": {
+        "selector": ".badge",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "button[wire:click^=nextPage]"
+  },
+  "search": {
+    "verified": false,
+    "note": "رابط البحث /search?q= . صفحة النتائج لم تُرسل؛ نفترض نفس بطاقات .title-card.",
+    "firstPageUrl": "/search?q={query}",
+    "url": "/search?q={query}&page={page}",
+    "list": ".title-card",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h2.title-name",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "subtitle": {
+        "selector": ".badge",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "button[wire:click^=nextPage]"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1 span[dir=ltr]",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": "img[alt^=بوستر]",
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "description": {
+      "selector": "div[x-data*=summary] p.leading-loose",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": "div[class~=-mt-2] a[href*=\"/genre/\"]",
+      "attr": "text",
+      "multiple": true
+    },
+    "status": {
+      "selector": "main table tr:first-child td:last-child",
+      "attr": "text"
+    },
+    "statusMap": {
+      "منتهي": "completed",
+      "مكتمل": "completed",
+      "مستمر": "ongoing",
+      "يعرض الآن": "ongoing",
+      "قيد العرض": "ongoing",
+      "متوقف": "on_hold"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "كل الحلقات في صفحة الأنمي نفسها (.video-list). الرابط /episode/{slug}/{رقم}.",
+    "inline": true,
+    "list": ".video-list a",
+    "numberFromUrl": "/episode/[^/]+/([0-9]+(?:\\.[0-9]+)?)/?$",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": ".video-data span",
+        "attr": "text"
+      }
+    }
+  },
+  "videos": {
+    "verified": false,
+    "note": "رابط المشغّل الموقّع (video.vid3rb.com/player/UUID?token&expires) موجود داخل JSON في wire:snapshot على عنصر video.show-video؛ يُستخرج بـ regex. ينتهي بعد مدة فيُجلب عند التشغيل. سيرفر واحد.",
+    "list": "[wire:name=\"video.show-video\"]",
+    "name": {
+      "selector": "[wire:name=\"video.show-video\"]",
+      "attr": "data-none"
+    },
+    "embed": {
+      "selector": "[wire:name=\"video.show-video\"]",
+      "attr": "wire:snapshot",
+      "regex": "\"video_url\"\\s*:\\s*\"(https:[^\"]+)\""
+    }
+  },
+  "home": {
+    "url": "/titles/list",
+    "sections": [
+      {
+        "container": "main",
+        "title": {
+          "selector": "h1",
+          "attr": "text"
+        },
+        "list": ".title-card",
+        "item": {
+          "url": {
+            "selector": "a",
+            "attr": "href"
+          },
+          "title": {
+            "selector": "h2.title-name",
+            "attr": "text"
+          },
+          "cover": {
+            "selector": "img",
+            "attr": [
+              "src",
+              "data-src"
+            ]
+          },
+          "subtitle": {
+            "selector": ".badge",
+            "attr": "text",
+            "optional": true
+          }
+        }
+      }
+    ]
+  }
+}

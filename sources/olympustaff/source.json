@@ -4,7 +4,7 @@
   "id": "olympustaff",
   "name": "Team-X (OlympusStaff)",
   "lang": "ar",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://olympustaff.com",
   "nsfw": false,
   "iconUrl": "https://cdn.olympustaff.com/assets/images/favicon.png",
@@ -52,20 +52,23 @@
   },
   "search": {
     "verified": false,
-    "note": "نموذج البحث GET /search?keyword= . لم تُرسل صفحة نتائج؛ نفترض نفس بطاقات .bs وترقيم &page=N.",
+    "note": "صفحة نتائج البحث /search?keyword= تختلف عن قائمة /series: لا توجد بطاقات .bs ولا صور، بل روابط نصية /series/slug بنص مثل «Martial Peak 3858 فصل Martial Peak مانها صيني». لذلك يُقتطع العنوان بـ regex. لم يُرَ HTML الخام لهذه الصفحة.",
     "firstPageUrl": "/search?keyword={query}",
     "url": "/search?keyword={query}&page={page}",
-    "list": ".listupd .bs",
+    "list": "a[href*=\"/series/\"]",
     "item": {
       "url": {
         "selector": "a",
         "attr": "href"
       },
       "title": {
-        "selector": ".tt",
-        "attr": [
-          "text"
-        ]
+        "selector": "a",
+        "attr": "text",
+        "regex": "^(.+?)\\s+\\d+\\s*فصل",
+        "fallback": {
+          "selector": "a",
+          "attr": "text"
+        }
       },
       "cover": {
         "selector": "img",
@@ -74,14 +77,10 @@
           "data-src"
         ]
       },
-      "status": {
-        "selector": ".status",
-        "attr": "text",
-        "optional": true
-      },
       "subtitle": {
-        "selector": ".type",
+        "selector": "a",
         "attr": "text",
+        "regex": "(\\d+\\s*فصل)",
         "optional": true
       }
     },

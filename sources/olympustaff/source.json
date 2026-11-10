@@ -1,0 +1,168 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "olympustaff",
+  "name": "Team-X (OlympusStaff)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://olympustaff.com",
+  "nsfw": false,
+  "iconUrl": "https://cdn.olympustaff.com/assets/images/favicon.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://olympustaff.com/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "قائمة المانغا /series بترقيم ?page=N (135 صفحة، 10 أعمال في كل صفحة). لا يوجد في الصفحات المرسلة خيار ترتيب.",
+    "firstPageUrl": "/series",
+    "url": "/series?page={page}",
+    "list": ".listupd .bs",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".tt",
+        "attr": [
+          "text"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "status": {
+        "selector": ".status",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".type",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "a[rel=next]"
+  },
+  "search": {
+    "verified": false,
+    "note": "نموذج البحث GET /search?keyword= . لم تُرسل صفحة نتائج؛ نفترض نفس بطاقات .bs وترقيم &page=N.",
+    "firstPageUrl": "/search?keyword={query}",
+    "url": "/search?keyword={query}&page={page}",
+    "list": ".listupd .bs",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".tt",
+        "attr": [
+          "text"
+        ]
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "src",
+          "data-src"
+        ]
+      },
+      "status": {
+        "selector": ".status",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".type",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "a[rel=next]"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".text-right img.shadow-sm",
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "description": {
+      "selector": ".review-content p",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".review-author-info a.subtitle",
+      "attr": "text",
+      "multiple": true
+    },
+    "author": {
+      "selector": ".full-list-info:has(small:containsOwn(المؤلف)) small:last-child a",
+      "attr": "text",
+      "multiple": true,
+      "optional": true
+    },
+    "status": {
+      "selector": ".full-list-info:has(small:containsOwn(الحالة)) small:last-child a",
+      "attr": "text"
+    },
+    "statusMap": {
+      "مستمرة": "ongoing",
+      "مستمر": "ongoing",
+      "مكتملة": "completed",
+      "مكتمل": "completed",
+      "متوقفة": "on_hold",
+      "متوقف": "on_hold",
+      "متروك": "cancelled",
+      "ملغاة": "cancelled"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "كل الفصول في HTML صفحة التفاصيل (.chapter-card). التاريخ نص إنجليزي نسبي (3 years ago) أو data-date بصيغة epoch لا يدعمها المحرك، لذلك أُهمل.",
+    "inline": true,
+    "list": ".chapter-card",
+    "item": {
+      "url": {
+        "selector": "a.chapter-link",
+        "attr": "href"
+      },
+      "name": {
+        "selector": ".chapter-number",
+        "attr": "text"
+      },
+      "number": {
+        "selector": ".chapter-card",
+        "attr": "data-number"
+      }
+    },
+    "numberFromUrl": "/([0-9]+(?:\\.[0-9]+)?)/?$",
+    "order": "desc"
+  },
+  "pages": {
+    "verified": true,
+    "list": "div.image_list img.manga-chapter-img",
+    "image": {
+      "attr": [
+        "src",
+        "data-src"
+      ]
+    },
+    "imageHeaders": {
+      "Referer": "https://olympustaff.com/"
+    }
+  }
+}

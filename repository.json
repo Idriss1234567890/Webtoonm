@@ -27,6 +27,10 @@
       "path": "sources/cenele/source.json"
     },
     {
+      "id": "anime3rb",
+      "path": "sources/anime3rb/source.json"
+    },
+    {
       "id": "starzmanga",
       "path": "sources/starzmanga/source.json"
     },

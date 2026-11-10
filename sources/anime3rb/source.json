@@ -5,7 +5,7 @@
   "type": "anime",
   "name": "أنمي عرب (Anime3rb)",
   "lang": "ar",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://anime3rb.com",
   "nsfw": false,
   "iconUrl": "https://images.anime3rb.com/favicon/favicon-32x32.png",
@@ -157,8 +157,8 @@
     }
   },
   "videos": {
-    "verified": false,
-    "note": "رابط المشغّل الموقّع (video.vid3rb.com/player/UUID?token&expires) موجود داخل JSON في wire:snapshot على عنصر video.show-video؛ يُستخرج بـ regex. ينتهي بعد مدة فيُجلب عند التشغيل. سيرفر واحد.",
+    "verified": true,
+    "note": "خطوتان: (1) من صفحة الحلقة يُستخرج رابط المشغّل video.vid3rb.com/player/UUID?token&expires من JSON في wire:snapshot (regex). (2) يطلب التطبيق صفحة المشغّل ويقرأ var video_sources (روابط mp4 لكل جودة 1080/720/480، وتُتجاهل جودة Premium الفارغة). الروابط موقّعة وتنتهي بعد مدة.",
     "list": "[wire:name=\"video.show-video\"]",
     "name": {
       "selector": "[wire:name=\"video.show-video\"]",

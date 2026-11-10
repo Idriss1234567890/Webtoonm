@@ -31,6 +31,10 @@
       "path": "sources/anime3rb/source.json"
     },
     {
+      "id": "olympustaff",
+      "path": "sources/olympustaff/source.json"
+    },
+    {
       "id": "starzmanga",
       "path": "sources/starzmanga/source.json"
     },

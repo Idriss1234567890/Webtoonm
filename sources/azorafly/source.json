@@ -2,7 +2,7 @@
   "$schema": "../../schema/source.schema.json",
   "schemaVersion": 1,
   "id": "azorafly",
-  "name": "أزورا مانجا ()",
+  "name": "أزورا مانجا (Azora)",
   "lang": "ar",
   "version": 6,
   "baseUrl": "https://azorafly.com",

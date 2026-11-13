@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>فتح في NexToon</title>
+<style>
+body{font-family:system-ui,sans-serif;background:#0f1115;color:#fff;display:flex;min-height:100vh;align-items:center;justify-content:center;margin:0;text-align:center}
+.c{max-width:360px;padding:24px}
+a.b{display:inline-block;margin-top:16px;padding:12px 28px;border-radius:999px;background:#4f7cf0;color:#fff;text-decoration:none;font-weight:700}
+p{opacity:.8;line-height:1.7}
+</style>
+</head>
+<body>
+<div class="c">
+  <h2>NexToon</h2>
+  <p id="t"></p>
+  <a class="b" id="open" href="#">فتح في التطبيق</a>
+  <p style="font-size:13px">إن لم يُفتح التطبيق فتأكد من تثبيت NexToon على جهازك.</p>
+</div>
+<script>
+var q = location.search.replace(/^\?/, '');
+var intent = 'intent://open?' + q + '#Intent;scheme=nextoon;package=com.mangalix.reader;end';
+var direct = 'nextoon://open?' + q;
+var p = new URLSearchParams(q);
+document.getElementById('t').textContent = p.get('t') ? 'فتح «' + p.get('t') + '» في NexToon' : 'فتح العمل في NexToon';
+var isAndroid = /android/i.test(navigator.userAgent);
+var href = isAndroid ? intent : direct;
+document.getElementById('open').href = href;
+if (q) setTimeout(function(){ location.href = href; }, 300);
+</script>
+</body>
+</html>

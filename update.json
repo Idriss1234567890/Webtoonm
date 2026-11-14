@@ -1,8 +1,8 @@
 {
-  "versionCode": 2,
-  "versionName": "1.0.1",
-  "minVersionCode": 1,
+  "versionCode": 99,
+  "versionName": "9.9.9",
+  "minVersionCode": 99,
   "force": false,
-  "url": "https://github.com/Idriss1234567890/Webtoonm/releases/latest",
-  "notes": "- تنزيل في الخلفية مع استئناف\n- اختيار السيرفر والجودة للتنزيل\n- فلتر الصورة في المشغّل\n- إطارات متحركة في المتجر"
+  "url": "https://github.com/Idriss1234567890/Webtoonm",
+  "notes": "تحديث إجباري تجريبي"
 }

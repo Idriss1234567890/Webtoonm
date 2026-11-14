@@ -1,0 +1,8 @@
+{
+  "tasks": [
+    { "id": "read5",  "title": "اقرأ 5 فصول",            "type": "chapters",  "target": 5,  "reward": 12 },
+    { "id": "watch2", "title": "شاهد حلقتين",            "type": "episodes",  "target": 2,  "reward": 10 },
+    { "id": "time30", "title": "اقرأ أو شاهد 30 دقيقة",  "type": "minutes",   "target": 30, "reward": 15 },
+    { "id": "dl3",    "title": "نزّل 3 فصول أو حلقات",   "type": "downloads", "target": 3,  "reward": 8 }
+  ]
+}

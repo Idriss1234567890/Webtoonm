@@ -1,0 +1,20 @@
+{
+  "frames": [
+    {
+      "id": "gold-dragon",
+      "name": "التنين الذهبي",
+      "en": "Golden Dragon",
+      "file": "gold-dragon.webp",
+      "price": 150,
+      "scale": 1.4
+    },
+    {
+      "id": "blue-flame",
+      "name": "اللهب الأزرق",
+      "en": "Blue Flame",
+      "file": "blue-flame.webp",
+      "price": 200,
+      "scale": 1.4
+    }
+  ]
+}

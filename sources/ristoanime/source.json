@@ -5,7 +5,7 @@
   "type": "anime",
   "name": "ريستو أنمي (RistoAnime)",
   "lang": "ar",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://ristoanime.cc",
   "nsfw": false,
   "iconUrl": "https://ristoanime.cc/favicon.ico",
@@ -105,6 +105,7 @@
   },
   "chapters": {
     "verified": true,
+    "inline": true,
     "list": ".EpisodesList a",
     "item": {
       "url": {
@@ -135,4 +136,4 @@
       "attr": "data-watch"
     }
   }
-  }
+}

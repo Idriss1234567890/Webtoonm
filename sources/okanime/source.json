@@ -1,0 +1,143 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "okanime",
+  "type": "anime",
+  "name": "أوك أنمي (OkAnime)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://ww3.okanime.xyz",
+  "nsfw": false,
+  "iconUrl": "https://ww3.okanime.xyz/favicon.ico",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://ww3.okanime.xyz/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "قائمة الأنمي /anime-list والترقيم ?page=N. رابط التالي هو آخر li في .pagination (يكون span إن لم توجد صفحة تالية).",
+    "firstPageUrl": "/anime-list",
+    "url": "/anime-list?page={page}",
+    "list": ".anime-card",
+    "item": {
+      "url": {
+        "selector": "a.clickable",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-title h4 span",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img.img-responsive",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": "small.text-muted",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".anime-title h5",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": ".pagination li:last-child a.page-link"
+  },
+  "search": {
+    "verified": false,
+    "note": "نموذج البحث يرسل q عبر GET إلى /anime-list. افتُرض أن النتائج بنفس بطاقات .anime-card (لم تُرفق صفحة نتائج للتأكد).",
+    "firstPageUrl": "/anime-list?q={query}",
+    "url": "/anime-list?q={query}&page={page}",
+    "list": ".anime-card",
+    "item": {
+      "url": {
+        "selector": "a.clickable",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-title h4 span",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img.img-responsive",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": "small.text-muted",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".anime-title h5",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": ".pagination li:last-child a.page-link"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1.animepage-h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": "img.animepage-poster",
+      "attr": [
+        "data-src",
+        "src"
+      ]
+    },
+    "description": {
+      "selector": ".synopsis-text",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".animepage-genres a.genre-tag",
+      "attr": "text",
+      "multiple": true
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "inline": true,
+    "list": "a.ep-compact-btn",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "a",
+        "attr": "title"
+      },
+      "number": {
+        "selector": "a",
+        "attr": "data-umami-event-episode_number"
+      }
+    }
+  },
+  "videos": {
+    "verified": true,
+    "note": "رابط السيرفر داخل الخاصية @click على شكل setServer('URL') فيُستخرج بـ regex. سيرفرات mega غير مدعومة وتُتجاهل تلقائياً.",
+    "list": "a.ep-link",
+    "name": {
+      "selector": "a",
+      "attr": "text"
+    },
+    "embed": {
+      "selector": "a",
+      "attr": "@click",
+      "regex": "setServer\\('([^']+)"
+    }
+  }
+    }

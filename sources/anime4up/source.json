@@ -5,7 +5,7 @@
   "type": "anime",
   "name": "أنمي فور أب (Anime4up)",
   "lang": "ar",
-  "version": 3,
+  "version": 4,
   "baseUrl": "https://4x.k3i6kum.shop",
   "nsfw": false,
   "iconUrl": "https://4x.k3i6kum.shop/wp-content/uploads/2019/03/Anime4up-Icon-1.png",
@@ -21,10 +21,26 @@
     "url": "/قائمة-الانمي/page/{page}/",
     "list": ".anime-list-content .anime-card-themex",
     "item": {
-      "url": { "selector": ".anime-card-title h3 a", "attr": "href" },
-      "title": { "selector": ".anime-card-title h3 a", "attr": "text" },
-      "cover": { "selector": ".anime-card-poster img", "attr": ["data-image", "src"] },
-      "subtitle": { "selector": ".anime-card-type", "attr": "text", "optional": true }
+      "url": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".anime-card-poster img",
+        "attr": [
+          "data-image",
+          "src"
+        ]
+      },
+      "subtitle": {
+        "selector": ".anime-card-type",
+        "attr": "text",
+        "optional": true
+      }
     },
     "nextPage": ".pagination a.next"
   },
@@ -35,19 +51,51 @@
     "url": "/page/{page}/?s={query}",
     "list": ".anime-list-content .anime-card-themex",
     "item": {
-      "url": { "selector": ".anime-card-title h3 a", "attr": "href" },
-      "title": { "selector": ".anime-card-title h3 a", "attr": "text" },
-      "cover": { "selector": ".anime-card-poster img", "attr": ["data-image", "src"] },
-      "subtitle": { "selector": ".anime-card-type", "attr": "text", "optional": true }
+      "url": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".anime-card-poster img",
+        "attr": [
+          "data-image",
+          "src"
+        ]
+      },
+      "subtitle": {
+        "selector": ".anime-card-type",
+        "attr": "text",
+        "optional": true
+      }
     },
     "nextPage": ".pagination a.next"
   },
   "details": {
     "verified": true,
-    "title": { "selector": ".anime-details-title", "attr": "text" },
-    "cover": { "selector": ".anime-thumbnail img", "attr": ["data-image", "src"] },
-    "description": { "selector": ".anime-story", "attr": "text" },
-    "genres": { "selector": ".anime-genres li a", "attr": "text", "multiple": true }
+    "title": {
+      "selector": ".anime-details-title",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".anime-thumbnail img",
+      "attr": [
+        "data-image",
+        "src"
+      ]
+    },
+    "description": {
+      "selector": ".anime-story",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".anime-genres li a",
+      "attr": "text",
+      "multiple": true
+    }
   },
   "chapters": {
     "verified": true,
@@ -55,7 +103,9 @@
     "webview": true,
     "webviewAjaxSearchQuery": "الحلقة",
     "webviewSelector": "#episodesList .anime-card-themex .ep_num a",
-    "webviewAttrs": ["href"],
+    "webviewAttrs": [
+      "href"
+    ],
     "webviewLoadMore": "عرض المزيد من الحلقات",
     "webviewNumberRegex": "(?i)(?:الحلقة|%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9)[-_ ]*([0-9]+(?:\\.[0-9]+)?)",
     "note": "تُقرأ الحلقات أولاً من HTML. إذا كانت القائمة جزئية، يفتح WebView ويستخدم بحث AJAX الخاص بالموقع بعبارة الحلقة، ثم يجمع الروابط الظاهرة ويضغط عرض المزيد إن وُجد.",
@@ -74,9 +124,16 @@
   },
   "videos": {
     "verified": true,
-    "note": "روابط المشاهدة موجودة في data-watch داخل عناصر episode-servers.",
+    "note": "روابط data-watch هي endpoints خاصة بالموقع وليست روابط فيديو مباشرة؛ افتح endpoint في WebView لالتقاط طلبات HLS/MP4. هذا الإعداد خاص بـ Anime4up.",
     "list": "#episode-servers li[data-watch]",
-    "name": { "selector": ".watch-server-name", "attr": "text" },
-    "embed": { "selector": "li[data-watch]", "attr": "data-watch" }
+    "name": {
+      "selector": ".watch-server-name",
+      "attr": "text"
+    },
+    "embed": {
+      "selector": "li[data-watch]",
+      "attr": "data-watch"
+    },
+    "resolveMode": "webview"
   }
 }

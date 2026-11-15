@@ -49,6 +49,10 @@
     {
       "id": "anime4up",
       "path": "sources/anime4up/source.json"
+    },
+    {
+      "id": "ristoanime",
+      "path": "sources/ristoanime/source.json"
     }
   ]
 }

@@ -1,0 +1,129 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "anime4up",
+  "type": "anime",
+  "name": "أنمي فور أب (Anime4up)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://4x.k3i6kum.shop",
+  "nsfw": false,
+  "iconUrl": "https://4x.k3i6kum.shop/wp-content/uploads/2019/03/Anime4up-Icon-1.png",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://4x.k3i6kum.shop/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "تم استخراج البطاقات والترقيم من صفحة قائمة الأنمي المرفقة.",
+    "firstPageUrl": "/قائمة-الانمي/",
+    "url": "/قائمة-الانمي/page/{page}/",
+    "list": ".anime-list-content .anime-card-themex",
+    "item": {
+      "url": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".anime-card-poster img",
+        "attr": [
+          "data-image",
+          "src"
+        ]
+      },
+      "subtitle": {
+        "selector": ".anime-card-type",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": ".pagination a.next"
+  },
+  "search": {
+    "verified": false,
+    "note": "مسار بحث WordPress قياسي؛ لم يتم إرفاق صفحة نتائج بحث للتحقق من البطاقات.",
+    "firstPageUrl": "/?s={query}",
+    "url": "/page/{page}/?s={query}",
+    "list": ".anime-list-content .anime-card-themex",
+    "item": {
+      "url": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".anime-card-title h3 a",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".anime-card-poster img",
+        "attr": [
+          "data-image",
+          "src"
+        ]
+      },
+      "subtitle": {
+        "selector": ".anime-card-type",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": ".pagination a.next"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": ".anime-details-title",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".anime-thumbnail img",
+      "attr": [
+        "data-image",
+        "src"
+      ]
+    },
+    "description": {
+      "selector": ".anime-story",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".anime-genres li a",
+      "attr": "text",
+      "multiple": true
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "note": "قائمة الحلقات تظهر كبطاقات ضمن #episodesList؛ رقم الحلقة يمكن استخراجه من نص رابط .ep_num.",
+    "list": "#episodesList .anime-card-themex",
+    "item": {
+      "url": {
+        "selector": ".anime-card-poster .ep_num a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": ".anime-card-poster .ep_num a",
+        "attr": "text"
+      }
+    },
+    "numberFromUrl": "الحلقة\\s*([0-9]+(?:\\.[0-9]+)?)"
+  },
+  "videos": {
+    "verified": true,
+    "note": "روابط المشاهدة موجودة في data-watch داخل عناصر #episode-servers؛ الرابط يفتح مشغل الحلقة داخل iframe. قد تتغير السيرفرات حسب الحلقة.",
+    "list": "#episode-servers li[data-watch]",
+    "name": {
+      "selector": ".watch-server-name",
+      "attr": "text"
+    },
+    "embed": {
+      "selector": "li[data-watch]",
+      "attr": "data-watch"
+    }
+  }
+}

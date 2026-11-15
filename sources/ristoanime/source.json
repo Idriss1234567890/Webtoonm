@@ -1,0 +1,138 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "ristoanime",
+  "type": "anime",
+  "name": "ريستو أنمي (RistoAnime)",
+  "lang": "ar",
+  "version": 1,
+  "baseUrl": "https://ristoanime.cc",
+  "nsfw": false,
+  "iconUrl": "https://ristoanime.cc/favicon.ico",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://ristoanime.cc/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "note": "قائمة الأنمي /series/ والترقيم عبر ?offset=N (22 صفحة). الغلاف داخل style كـ background-image.",
+    "firstPageUrl": "/series/",
+    "url": "/series/?offset={page}",
+    "list": ".BlocksHolder .MovieItem",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".title h4",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".poster",
+        "attr": "style",
+        "regex": "url\\(\\s*[\"']?([^\"')]+)"
+      },
+      "status": {
+        "selector": ".quality",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".genre",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "search": {
+    "verified": false,
+    "note": "نموذج البحث بلا action ويرسل s عبر GET؛ يُفترض أن النتائج بنفس بطاقات MovieItem (لم تُرفق صفحة نتائج للتأكد).",
+    "firstPageUrl": "/?s={query}",
+    "url": "/page/{page}/?s={query}",
+    "list": ".BlocksHolder .MovieItem",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": ".title h4",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": ".poster",
+        "attr": "style",
+        "regex": "url\\(\\s*[\"']?([^\"')]+)"
+      },
+      "status": {
+        "selector": ".quality",
+        "attr": "text",
+        "optional": true
+      },
+      "subtitle": {
+        "selector": ".genre",
+        "attr": "text",
+        "optional": true
+      }
+    },
+    "nextPage": "a.next.page-numbers"
+  },
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1.PostTitle a",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": ".SinglePost .Poster img",
+      "attr": [
+        "data-src",
+        "src"
+      ]
+    },
+    "description": {
+      "selector": ".StoryArea p",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".TaxContent a[href*=\"/genre/\"]",
+      "attr": "text",
+      "multiple": true
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "list": ".EpisodesList a",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "a",
+        "attr": "text"
+      },
+      "number": {
+        "selector": "em",
+        "attr": "text"
+      }
+    }
+  },
+  "videos": {
+    "verified": true,
+    "note": "السيرفرات في صفحة <رابط الحلقة>/watch (watchSuffix يلحقها تلقائياً). سيرفر mega غير مدعوم.",
+    "watchSuffix": "/watch",
+    "list": "ul#watch li[data-watch]",
+    "name": {
+      "selector": "li",
+      "attr": "text"
+    },
+    "embed": {
+      "selector": "li",
+      "attr": "data-watch"
+    }
+  }
+  }

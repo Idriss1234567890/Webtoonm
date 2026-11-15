@@ -57,6 +57,10 @@
     {
       "id": "okanime",
       "path": "sources/okanime/source.json"
+    },
+    {
+      "id": "witanime",
+      "path": "sources/witanime/source.json"
     }
   ]
 }

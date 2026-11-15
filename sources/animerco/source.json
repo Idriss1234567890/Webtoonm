@@ -5,7 +5,7 @@
   "type": "anime",
   "name": "أنمي ركو (Animerco)",
   "lang": "ar",
-  "version": 2,
+  "version": 3,
   "baseUrl": "https://eva.animerco.org",
   "nsfw": false,
   "iconUrl": "https://eva.animerco.org/wp-content/uploads/2024/03/cropped-android-chrome-512x512-1-192x192.png",
@@ -80,20 +80,21 @@
   },
   "search": {
     "verified": true,
+    "note": "بطاقات البحث تستخدم .search-card (وليس .anime-card). تم الاختبار بكلمة Dragon ball.",
     "firstPageUrl": "/?s={query}",
     "url": "/page/{page}/?s={query}",
     "list": ".media-block",
     "item": {
       "url": {
-        "selector": ".anime-card .info a",
+        "selector": ".search-card .info a",
         "attr": "href"
       },
       "title": {
-        "selector": ".anime-card .info h3",
+        "selector": ".search-card .info h3",
         "attr": "text"
       },
       "cover": {
-        "selector": ".anime-card a.image",
+        "selector": ".search-card a.image",
         "attr": [
           "data-src",
           "src",
@@ -109,7 +110,7 @@
         "attr": "text"
       }
     },
-    "nextPage": "link[rel=next]"
+    "nextPage": "link[rel=next], .pagination a.next, a.next.page-numbers"
   },
   "coverTransform": [
     {

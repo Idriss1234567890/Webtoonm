@@ -5,7 +5,7 @@
   "type": "anime",
   "name": "ويت أنمي (WitAnime)",
   "lang": "ar",
-  "version": 1,
+  "version": 2,
   "baseUrl": "https://witanime.site",
   "nsfw": false,
   "iconUrl": "https://witanime.site/favicon.ico",
@@ -115,8 +115,7 @@
   },
   "videos": {
     "verified": false,
-    "note": "السيرفرات لا تظهر في HTML: تُحمَّل من نقطة /watch/<slug>/<n>/sources (watchSuffix يلحقها). صيغة الاستجابة لم تُرفق بعد، فالمحددات أدناه مؤقتة.",
-    "watchSuffix": "/sources",
+    "note": "السيرفرات لا تظهر في HTML الصفحة؛ تُحمَّل من نقطة /watch/<slug>/<n>/sources التي ترفض الطلب العادي (404). محددات مؤقتة حتى تُعرف الترويسات وشكل الاستجابة.",
     "list": "[data-server]",
     "name": {
       "selector": "[data-server]",

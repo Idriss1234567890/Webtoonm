@@ -53,6 +53,10 @@
     {
       "id": "ristoanime",
       "path": "sources/ristoanime/source.json"
+    },
+    {
+      "id": "okanime",
+      "path": "sources/okanime/source.json"
     }
   ]
 }

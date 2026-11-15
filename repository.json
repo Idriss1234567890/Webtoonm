@@ -45,6 +45,10 @@
     {
       "id": "animerco",
       "path": "sources/animerco/source.json"
+    },
+    {
+      "id": "anime4up",
+      "path": "sources/anime4up/source.json"
     }
   ]
 }

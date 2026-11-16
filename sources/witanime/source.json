@@ -1,0 +1,161 @@
+{
+  "$schema": "../../schema/source.schema.json",
+  "schemaVersion": 1,
+  "id": "witanime",
+  "type": "anime",
+  "name": "ويت انمي (WitAnime)",
+  "lang": "ar",
+  "version": 2,
+  "baseUrl": "https://witanime.site",
+  "nsfw": false,
+  "iconUrl": "https://witanime.site/favicon.ico",
+  "headers": {
+    "User-Agent": "Mozilla/5.0 (Linux; Android 14; Pixel 8) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Mobile Safari/537.36",
+    "Referer": "https://witanime.site/",
+    "Accept-Language": "ar,en;q=0.8"
+  },
+  "latest": {
+    "verified": true,
+    "firstPageUrl": "/browse",
+    "url": "/browse?page={page}",
+    "list": "[data-preview-card]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": ".h-6.truncate",
+        "attr": "text"
+      }
+    },
+    "nextPage": "link[rel=next], .pagination a.next"
+  },
+  "popular": {
+    "verified": false,
+    "firstPageUrl": "/browse?sort=rating",
+    "url": "/browse?sort=rating&page={page}",
+    "list": "[data-preview-card]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": ".h-6.truncate",
+        "attr": "text"
+      }
+    },
+    "nextPage": "link[rel=next], .pagination a.next"
+  },
+  "search": {
+    "verified": true,
+    "firstPageUrl": "/search?q={query}",
+    "url": "/search?q={query}&page={page}",
+    "list": "[data-preview-card]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "data-src",
+          "src",
+          "data-lazy-src"
+        ]
+      },
+      "status": {
+        "selector": ".h-6.truncate",
+        "attr": "text"
+      }
+    },
+    "nextPage": "link[rel=next], .pagination a.next"
+  },
+  "coverTransform": [
+    {
+      "regex": "-\\d{2,4}x\\d{2,4}(?=\\.[A-Za-z0-9]+$)",
+      "replace": ""
+    }
+  ],
+  "details": {
+    "verified": true,
+    "title": {
+      "selector": "h1",
+      "attr": "text"
+    },
+    "cover": {
+      "selector": "img.rounded-xl",
+      "attr": [
+        "data-src",
+        "src"
+      ]
+    },
+    "description": {
+      "selector": "p.text-neutral-300",
+      "attr": "text"
+    },
+    "genres": {
+      "selector": ".flex.flex-wrap.gap-2 span.rounded-full",
+      "attr": "text"
+    }
+  },
+  "chapters": {
+    "verified": true,
+    "list": "[data-episode-list] a",
+    "numberFromUrl": "-(\\d+)/?$",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "name": {
+        "selector": "span",
+        "attr": "text"
+      },
+      "number": {
+        "selector": "span[dir=ltr]",
+        "attr": "text"
+      }
+    }
+  },
+  "videos": {
+    "verified": true,
+    "list": ".server-list a.option",
+    "name": {
+      "selector": ".server",
+      "attr": "text"
+    },
+    "embed": {
+      "selector": "a.option",
+      "attr": "data-embed-url"
+    }
+  }
+}

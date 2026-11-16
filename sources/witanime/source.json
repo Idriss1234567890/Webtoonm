@@ -3,9 +3,9 @@
   "schemaVersion": 1,
   "id": "witanime",
   "type": "anime",
-  "name": "ويت أنمي (WitAnime)",
+  "name": "ويت انمي (WitAnime)",
   "lang": "ar",
-  "version": 2,
+  "version": 1,
   "baseUrl": "https://witanime.site",
   "nsfw": false,
   "iconUrl": "https://witanime.site/favicon.ico",
@@ -16,13 +16,12 @@
   },
   "latest": {
     "verified": true,
-    "note": "قائمة الأنمي /browse والترقيم /browse/page/N (114 صفحة). البطاقة [data-preview-card] وزر التالي a[rel=next].",
     "firstPageUrl": "/browse",
-    "url": "/browse/page/{page}",
+    "url": "/browse?page={page}",
     "list": "[data-preview-card]",
     "item": {
       "url": {
-        "selector": "a[data-preview]",
+        "selector": "a",
         "attr": "href"
       },
       "title": {
@@ -37,22 +36,48 @@
         ]
       },
       "status": {
-        "selector": "div.rounded-md.bg-white",
-        "attr": "text",
-        "optional": true
+        "selector": ".h-6.truncate",
+        "attr": "text"
       }
     },
-    "nextPage": "a[rel=next]"
+    "nextPage": "link[rel=next], .pagination a.next"
+  },
+  "popular": {
+    "verified": false,
+    "firstPageUrl": "/browse?sort=rating",
+    "url": "/browse?sort=rating&page={page}",
+    "list": "[data-preview-card]",
+    "item": {
+      "url": {
+        "selector": "a",
+        "attr": "href"
+      },
+      "title": {
+        "selector": "h3",
+        "attr": "text"
+      },
+      "cover": {
+        "selector": "img",
+        "attr": [
+          "data-src",
+          "src"
+        ]
+      },
+      "status": {
+        "selector": ".h-6.truncate",
+        "attr": "text"
+      }
+    },
+    "nextPage": "link[rel=next], .pagination a.next"
   },
   "search": {
-    "verified": false,
-    "note": "نموذج البحث يرسل q عبر GET إلى /search. افتُرض أن النتائج بنفس بطاقات [data-preview-card] (لم تُرفق صفحة نتائج للتأكد).",
+    "verified": true,
     "firstPageUrl": "/search?q={query}",
     "url": "/search?q={query}&page={page}",
     "list": "[data-preview-card]",
     "item": {
       "url": {
-        "selector": "a[data-preview]",
+        "selector": "a",
         "attr": "href"
       },
       "title": {
@@ -63,25 +88,31 @@
         "selector": "img",
         "attr": [
           "data-src",
-          "src"
+          "src",
+          "data-lazy-src"
         ]
       },
       "status": {
-        "selector": "div.rounded-md.bg-white",
-        "attr": "text",
-        "optional": true
+        "selector": ".h-6.truncate",
+        "attr": "text"
       }
     },
-    "nextPage": "a[rel=next]"
+    "nextPage": "link[rel=next], .pagination a.next"
   },
+  "coverTransform": [
+    {
+      "regex": "-\\d{2,4}x\\d{2,4}(?=\\.[A-Za-z0-9]+$)",
+      "replace": ""
+    }
+  ],
   "details": {
     "verified": true,
     "title": {
-      "selector": "h1 span",
+      "selector": "h1",
       "attr": "text"
     },
     "cover": {
-      "selector": "img.w-48",
+      "selector": "img.rounded-xl",
       "attr": [
         "data-src",
         "src"
@@ -92,38 +123,39 @@
       "attr": "text"
     },
     "genres": {
-      "selector": "div.flex-wrap.gap-2 span.rounded-full",
-      "attr": "text",
-      "multiple": true
+      "selector": ".flex.flex-wrap.gap-2 span.rounded-full",
+      "attr": "text"
     }
   },
   "chapters": {
     "verified": true,
-    "inline": true,
-    "list": "div.grid.grid-cols-1.gap-3 a[href*=\"/watch/\"]",
-    "numberFromUrl": "/(\\d+(?:\\.\\d+)?)/?$",
+    "list": "[data-episode-list] a",
+    "numberFromUrl": "-(\\d+)/?$",
     "item": {
       "url": {
         "selector": "a",
         "attr": "href"
       },
       "name": {
-        "selector": "a",
+        "selector": "span",
+        "attr": "text"
+      },
+      "number": {
+        "selector": "span[dir=ltr]",
         "attr": "text"
       }
     }
   },
   "videos": {
-    "verified": false,
-    "note": "السيرفرات لا تظهر في HTML الصفحة؛ تُحمَّل من نقطة /watch/<slug>/<n>/sources التي ترفض الطلب العادي (404). محددات مؤقتة حتى تُعرف الترويسات وشكل الاستجابة.",
-    "list": "[data-server]",
+    "verified": true,
+    "list": ".server-list a.option",
     "name": {
-      "selector": "[data-server]",
+      "selector": ".server",
       "attr": "text"
     },
     "embed": {
-      "selector": "[data-server]",
-      "attr": "data-url"
+      "selector": "a.option",
+      "attr": "data-embed-url"
     }
   }
 }

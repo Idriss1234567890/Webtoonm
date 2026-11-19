@@ -23,6 +23,46 @@
       "file": "neon-ring.json",
       "price": 120,
       "scale": 1.4
+    },
+    {
+      "id": "crown",
+      "name": "التاج الذهبي",
+      "en": "Golden Crown",
+      "file": "crown.json",
+      "price": 250,
+      "scale": 1.4
+    },
+    {
+      "id": "ice",
+      "name": "الجليد",
+      "en": "Ice",
+      "file": "ice.json",
+      "price": 200,
+      "scale": 1.5
+    },
+    {
+      "id": "fire",
+      "name": "النار",
+      "en": "Fire",
+      "file": "fire.json",
+      "price": 200,
+      "scale": 1.5
+    },
+    {
+      "id": "flag",
+      "name": "العلم",
+      "en": "Flag",
+      "file": "flag.json",
+      "price": 150,
+      "scale": 1.4
+    },
+    {
+      "id": "dragon",
+      "name": "التنين",
+      "en": "Dragon",
+      "file": "dragon.json",
+      "price": 300,
+      "scale": 1.4
     }
   ]
 }

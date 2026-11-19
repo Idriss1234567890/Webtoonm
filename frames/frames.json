@@ -15,6 +15,14 @@
       "file": "blue-flame.webp",
       "price": 200,
       "scale": 1.4
+    },
+    {
+      "id": "neon-ring",
+      "name": "حلقة النيون",
+      "en": "Neon Ring",
+      "file": "neon-ring.json",
+      "price": 120,
+      "scale": 1.4
     }
   ]
 }
